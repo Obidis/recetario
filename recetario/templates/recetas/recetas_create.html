@@ -1,0 +1,23 @@
+{% extends 'general/layout.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block head_title %}Nueva Receta{% endblock %}
+{% block content %}
+
+
+
+  <h1>Nueva Receta</h1>
+   
+  <form action="" method="post", enctype="multipart/form-data">
+    {% csrf_token %} 
+      <div class="col-12 col-md-6" >
+        {{ form.image | as_crispy_field }}
+        {{ form.recipe_name | as_crispy_field }}
+        {{ form.recipes | as_crispy_field }}
+      </div>
+    <button class="btn btn-secondary">Añadir Receta</button>
+  </form>
+    
+
+
+{% endblock %}

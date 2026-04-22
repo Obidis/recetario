@@ -1,0 +1,44 @@
+{% extends 'general/layout.html' %}
+{% load i18n %}
+{% block head_title %}Instagram Conquer{% endblock %}
+{% block content %}
+
+
+    <h1>Perfiles</h1>
+    <div class="row">
+      {% for profile in profiles %}
+        <article class="col-12 col-sm-4">
+          <h4>{{ profile.user.username}}</h4>
+          <p>Biografia: {{ profile.bio|default_if_none:'Sin rellenar' }}</p>
+          <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
+          <p>
+            {% if profile.profile_picture %}
+              <img width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
+            {% else %}
+                No dispone de foto de perfil        
+            {% endif %}
+          </p>
+          <p>Seguidores: {{ profile.following.count }}</p>
+          <p>Seguidos: {{ profile.followers.count }}</p>
+          <p><a class="btn btn-primary" role= "button" href="{% url 'profile_detail' profile.pk %}">Ver perfil</a></p>
+
+        </article>
+      {% endfor %}
+    </div>
+
+
+
+
+    
+    
+    
+    
+    
+   
+   
+
+    
+
+   
+   
+{% endblock %}

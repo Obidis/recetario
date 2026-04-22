@@ -1,0 +1,21 @@
+{% extends 'general/layout.html' %}
+{% load i18n %}
+{% block head_title %}Instagram Conquer{% endblock %}
+{% block content %}
+
+
+   
+    
+     <section>
+        <h2>Ultimas recetas</h2>
+        <div class="row">
+            {% for receta in last_recetas%}
+                <div class="col-12 col-sm-6 col-md-4">
+                    {% include  '_includes/_recetas.html' %}
+                </div>
+            {% endfor %}
+        </div>
+
+    </section>
+    
+{% endblock %}

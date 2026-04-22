@@ -1,0 +1,20 @@
+{% extends 'general/layout.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block head_title %}Instagram Conquer{% endblock %}
+{% block content %}
+
+<h1>Perfil</h1>
+    <p>Perfil de {{ request.user.username}}</p>
+    <p>Email: {{ profile.email|default_if_none:'Sin rellenar' }}</p>
+    <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
+    <p>
+        {% if profile.profile_picture%}
+           <img width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
+        {% else %}
+            No dispone de foto de perfil        
+        {% endif%}
+    </p>
+
+   
+{% endblock %}
