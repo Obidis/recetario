@@ -1,21 +1,48 @@
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-   
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="nav nav-pills mb-2 mb-md-0 justify-content-md-between align-items-center">
-            <li><a href="{% url 'home' %}">Inicio</a></li>
-             <li><a href="">Perfiles</a></li>
-            {% if not request.user.is_authenticated %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'register' %}">Registro</a></li>
-            {% endif %}
-            <li><a href="{% url 'contact' %}">Contacto</a></li>
-            {% if request.user.is_authenticated %}
-                <li><a href="{% url 'recipe_create' %}">Nueva Receta</a></li>
-                <li><a href="{% url 'profile_detail' request.user.profile.pk %}">Mi Perfil</a></li>       
-                
-                <li><a href="{% url 'logout' %}">Cerrar sesion</a></li>
-            {% endif %}
-        </ul>
+
+{% load static %}
+
+<header id="header" class="mb-4">
+    
+    
+    <nav class="navbar navbar-expand-sm .navbar-custom">
+        <img src="{% static '/imgs/martas_kitchen_logo.png' %}" alt="Logo" class="navbar-brand" style="height: 200px;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'home' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Perfiles</a>
+                </li>
+                {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Registro</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'recipe_create' %}">Nueva Receta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile_detail' request.user.profile.pk %}">Mi Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </nav>
+    
     
 </header>
