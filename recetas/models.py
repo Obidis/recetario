@@ -9,7 +9,8 @@ class Receta(models.Model):
     recipes = models.TextField(max_length=1000, blank=True, verbose_name="Descripcion")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creacion")
     likes = models.ManyToManyField(User, related_name="liked_recipes", blank=True, verbose_name="Nº de Likes")
-
+    favourite = models.ManyToManyField(User, related_name='favourite', blank=True)
+    
     class Meta:
         verbose_name = 'Recipe'
         verbose_name_plural = 'Recipes'

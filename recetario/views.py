@@ -13,8 +13,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, LoginForm
 from profiles.models import UserProfile
 from django.views.generic import DetailView, UpdateView ,FormView
-
-
+from recetas.models import Receta
+from django.shortcuts import get_object_or_404, redirect
 
 class HomeView(TemplateView):
     template_name = "general/home.html"
@@ -111,4 +111,20 @@ class ProfileUpdateView(UpdateView):
         return reverse("profile_detail", args=[self.object.pk])
     
     
-    
+
+
+
+
+
+def toggle_favorite(request, pk):
+        receta = Receta.objects.get(pk=pk)
+        user = request.user
+        favorite_recetas = user.favoritos.all()
+        if user in receta.favourite.all():
+            receta.favourite.remove(user)
+            messages.add_message(request, messages.INFO, "Receta eliminada de favoritos.")
+        else:
+            receta.favourite.add(user)
+            messages.add_message(request, messages.SUCCESS, "Receta añadida a favoritos.")
+
+        return HttpResponseRedirect(reverse('receta_detail', args=[pk]))
