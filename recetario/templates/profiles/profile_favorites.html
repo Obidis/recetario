@@ -1,35 +1,14 @@
-{% extends 'general/layout.html' %}
+{% extends 'general/layout.html' %} {% load i18n %} {% block head_title
+%}Favoritos{% endblock %} {% block content %}
 
-{% load i18n %}
-{% block head_title %}Favoritos{% endblock %}
-{% block content %}
+<h1>Favoritos</h1>
+<section>
+  <h2>Recetas</h2>
+  <div class="d-flex p-2">
+    {% for favorita in favorite_recetas %}
+    <div class="col-12 col-sm-4"></div>
+    {% endfor %}
+  </div>
+</section>
 
-
-    <h1>Favoritos</h1>
-    <section>
-        <h2>Recetas</h2>
-        <div class="d-flex p-2" >
-            {% for favorita in  favorite_recetas %}
-                <div class="col-12 col-sm-4">
-                    {% include '_includes/_recetas.html' %}
-                </div>
-            {% endfor %}
-        </div>
-    </section>
-
-
-
-
-    
-    
-    
-    
-    
-   
-   
-
-    
-
-   
-   
 {% endblock %}

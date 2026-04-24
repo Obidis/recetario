@@ -116,15 +116,23 @@ class ProfileUpdateView(UpdateView):
 
 
 
+@login_required
 def toggle_favorite(request, pk):
-        receta = Receta.objects.get(pk=pk)
-        user = request.user
-        favorite_recetas = user.favoritos.all()
+    user = request.user
+
+    if request.method == "POST":
+        # POST: pk is a Receta pk — toggle favourite
+        receta = get_object_or_404(Receta, pk=pk)
         if user in receta.favourite.all():
             receta.favourite.remove(user)
             messages.add_message(request, messages.INFO, "Receta eliminada de favoritos.")
         else:
             receta.favourite.add(user)
             messages.add_message(request, messages.SUCCESS, "Receta añadida a favoritos.")
-
         return HttpResponseRedirect(reverse('receta_detail', args=[pk]))
+
+    # GET: pk is a UserProfile pk — show favourites page
+    favorite_recetas = Receta.objects.filter(favourite=user)
+    return render(request, 'profiles/profile_favorites.html', {
+        'favorite_recetas': favorite_recetas,
+    })
