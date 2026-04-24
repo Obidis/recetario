@@ -6,42 +6,38 @@
 {% block head_title %}Recetario{% endblock %}
 {% block content %}
 
+    <div class="row">
 
-   
-    
-        <div class="row">
-
-            <h2>Detalle de Receta</h2>
-            <section class="comments p-2 px-3">
+        <h2>Detalle de Receta</h2>
+        <section class="comments p-2 px-3">
                 
-                <div class="bg-white border mt-2">
-                    <div class="d-flex flex-row align-items-center feed-text px-2 " >
-                        <img class="rounded-circle" src="{{ receta.user.profile.profile_picture.url }}" width="100">
-                        <p class="font-weight-bold">Creada por {{ receta.user.first_name }} el - {{ receta.created_at }} - </p>
-                    </div >
+            <div class="bg-white border mt-2">
+                <div class="d-flex flex-row align-items-center feed-text px-2 " >
+                    <img class="rounded-circle" src="{{ receta.user.profile.profile_picture.url }}" width="100">
+                    <p class="font-weight-bold">Creada por {{ receta.user.first_name }} el - {{ receta.created_at }} - </p>
+                </div >
                     
-                    <hr class="border-bottom border-2 border-dark">
+                <hr class="border-bottom border-2 border-dark">
                                         
-                    <div class="d-flex flex-row justify-content-between align-items-center p-2 ">
-                                                                 
-                        <div class=" p-2 px-3 d-flex flex-column align-items-center ">
-                              
-                            <h1 class="font-weight-bold d-flex flex-row align-items-center feed-text px-2">{{ receta.recipe_name}}</h1>
+                <div class="d-flex flex-row justify-content-between align-items-center p-2 ">
+                                                          
+                    <div class=" p-2 px-3 d-flex flex-column align-items-center ">
+                     
+                        <h1 class="font-weight-bold d-flex flex-row align-items-center feed-text px-2">{{ receta.recipe_name}}</h1>
                             
-                            <div class="d-flex flex-row align-items-center feed-text px-2">
-                                <p class="text-black-50 time">{{ receta.recipes }}</p>
-                            </div>
-                            
-                            <div>
-                                <img class="img-fluid img-responsive" src="{{ receta.image.url }}" width="300"> 
-                                 <p >Likes: {{ receta.likes.count }}</p>
-                                 
-                            </div>   
+                        <div class="d-flex flex-row align-items-center feed-text px-2">
+                            <p class="text-black-50 time">{{ receta.recipes }}</p>
+                        </div>
 
+                        <div>
+                            <img class="img-fluid img-responsive" src="{{ receta.image.url }}" width="300"> 
+                            <p >Likes: {{ receta.likes.count }}</p>
+                                 
+                        </div>   
 
                             {% if user.is_authenticated %}
                                 <form method="post" action="{% url 'profile_favorites' receta.pk %}">
-                                    {% csrf_token %}
+                                {% csrf_token %}
                                     <button type="submit" class="btn btn-primary">
                                         {% if user in receta.favourite.all %}
                                           ❌ Quitar de Favoritos
@@ -51,21 +47,12 @@
                                     </button>
                                 </form>
                             {% endif %}
-
-                            
-
-
-
-
                         </div>
-                         
                     </div>
-                    
-                                             
-                    
                 </div>
-            </section>
-        </div>
+            
+        </section>
+    </div>
 
 
           

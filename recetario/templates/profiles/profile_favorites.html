@@ -1,14 +1,27 @@
-{% extends 'general/layout.html' %} {% load i18n %} {% block head_title
-%}Favoritos{% endblock %} {% block content %}
+{% extends 'general/layout.html' %} 
+{% load i18n %}
+{% block head_title %}Favoritos{% endblock %} 
+{% block content %}
 
-<h1>Favoritos</h1>
-<section>
-  <h2>Recetas</h2>
-  <div class="d-flex p-2">
-    {% for favorita in favorite_recetas %}
-    <div class="col-12 col-sm-4"></div>
-    {% endfor %}
+
+  <div class="row">
+    <h2>Recetas Favoritas</h2>
+  
+    <section class="bg-white border mt-2">
+      
+      {% if favorite_recetas %}
+        <ul class="list-group list-group-flush">
+          {% for recipe in favorite_recetas %}
+            <li class="list-group-item"><a class="flex-sm-fill text-sm-center nav-link"  href="{% url 'receta_detail' recipe.pk %}">{{ recipe.recipe_name }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No tienes recetas favoritas.</p>
+      {% endif %}
+    </section>
   </div>
-</section>
+
+   
+   
 
 {% endblock %}
