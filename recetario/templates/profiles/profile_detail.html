@@ -4,17 +4,33 @@
 {% block head_title %}Instagram Conquer{% endblock %}
 {% block content %}
 
-<h1>Perfil</h1>
-    <p>Perfil de {{ request.user.username}}</p>
-    <p>Email: {{ profile.email|default_if_none:'Sin rellenar' }}</p>
-    <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
-    <p>
-        {% if profile.profile_picture%}
-           <img width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
-        {% else %}
-            No dispone de foto de perfil        
-        {% endif%}
-    </p>
+    <section>
+    <h1>Perfil</h1>
+        <p>
+            {% if profile.profile_picture%}
+            <img width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
+            {% else %}
+                No dispone de foto de perfil        
+            {% endif%}
+        </p>
+        <p>Perfil de {{ request.user.username}}</p>
+        <p>Email: {{ profile.email|default_if_none:'Sin rellenar' }}</p>
+        <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
+        {% if profile.user == request.user %}
+            <p><a class="btn btn-primary" href="{% url 'profile_update' profile.pk %}">Editar</a></p>
+        {% endif %}
+  
+    </section>
+    <section>
+        <h2>Recetas</h2>
+        <div class="d-flex p-2" >
+            {% for receta in profile.user.recetas.all %}
+                <div class="col-12 col-sm-4">
+                    {% include '_includes/_recetas.html' %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 
    
 {% endblock %}

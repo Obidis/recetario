@@ -4,7 +4,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ContactView,ProfileDetailView
+from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ContactView,ProfileDetailView, ProfileUpdateView
 from recetas.views import RecipeCreateView, RecipeDetailView
  
 
@@ -19,6 +19,7 @@ urlpatterns = [
     path('recetas/<pk>/', RecipeDetailView.as_view(), name="receta_detail"),
     path('contact/', ContactView.as_view(), name="contact"),
     path('profile/<pk>', ProfileDetailView.as_view(), name='profile_detail'),
+    path('profile/update/<pk>/', ProfileUpdateView.as_view(), name="profile_update"),
 
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,7 +5,7 @@
     
     
     <nav class="navbar navbar-expand-sm .navbar-custom">
-        <img src="{% static '/imgs/martas_kitchen_logo.png' %}" alt="Logo" class="navbar-brand" style="height: 200px;">
+        <img class=".img-fluid." src="{% static '/imgs/martas_kitchen_logo.png' %}" alt="Logo" class="navbar-brand" width="150">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,7 +16,7 @@
                     <a class="nav-link"  href="{% url 'home' %}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Perfiles</a>
+                    <a class="nav-link" href="">Favoritos</a>
                 </li>
                 {% if not request.user.is_authenticated %}
                     <li class="nav-item">
