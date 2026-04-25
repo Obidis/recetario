@@ -4,9 +4,9 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ContactView,ProfileDetailView, ProfileUpdateView, toggle_favorite
+from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileDetailView, ProfileUpdateView, toggle_favorite
 from recetas.views import RecipeCreateView, RecipeDetailView
-
+from profiles.views import contact_view
 
 
 urlpatterns = [
@@ -17,7 +17,7 @@ urlpatterns = [
     path('legal/', LegalView.as_view(), name="legal"),
     path('recetas/create/', RecipeCreateView.as_view(), name="recipe_create"),
     path('recetas/<pk>/', RecipeDetailView.as_view(), name="receta_detail"),
-    path('contact/', ContactView.as_view(), name="contact"),
+    path('contact/', contact_view, name="contact"),
     path('profile/<pk>', ProfileDetailView.as_view(), name='profile_detail'),
     path('profile/update/<pk>/', ProfileUpdateView.as_view(), name="profile_update"),
     path('profile/favorites/<pk>/', toggle_favorite, name="profile_favorites"),

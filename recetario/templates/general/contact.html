@@ -5,6 +5,16 @@
 
 
     <h1>Contacto</h1>
-    <p>Esta es la pagina de contacto<p/>
+    
+    
+    <div>
+        <form  action="" method="POST">
+            {% csrf_token %}
+            {{formulario.as_p}}
+            <button>{% trans "Enviar" %}</button>
+        </form>
+        
+        <p>{% trans "Escribenos a:" %} <a href="mailto:contacto@libreria.com">contacto@libreria.com</a></p>
+    </div>
 
 {% endblock %}
