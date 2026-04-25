@@ -15,6 +15,7 @@ from profiles.models import UserProfile
 from django.views.generic import DetailView, UpdateView ,FormView
 from recetas.models import Receta
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.decorators import method_decorator
 
 class HomeView(TemplateView):
     template_name = "general/home.html"
@@ -82,13 +83,15 @@ class ContactView(TemplateView):
     template_name = "general/contact.html"
 
 
-
+# Vista para mostrar el perfil de usuario, solo el propio usuario puede ver su perfil
+@method_decorator(login_required, name='dispatch')
 class ProfileDetailView(DetailView):
     model = UserProfile
     template_name = "profiles/profile_detail.html"
     context_object_name = "profile"
 
-
+# Vista para editar el perfil de usuario, solo el propio usuario puede editar su perfil
+@method_decorator(login_required, name="dispatch")
 class ProfileUpdateView(UpdateView):
     model = UserProfile
     template_name = "profiles/profile_update.html"
@@ -114,7 +117,7 @@ class ProfileUpdateView(UpdateView):
 
 
 
-
+# Vista para mostrar y gestionar las recetas favoritas de un usuario
 
 @login_required
 def toggle_favorite(request, pk):
