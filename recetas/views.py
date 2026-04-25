@@ -8,6 +8,7 @@ from .models import Receta
 from .forms import RecipeCreateForm
 from django.urls import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -30,6 +31,13 @@ class RecipeDetailView(DetailView):
     template_name = "recetas/recetas_detail.html"
     model = Receta
     context_object_name = 'receta'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = get_object_or_404(Receta, pk=self.kwargs['pk']).pk
+        context['ingredientes'] = Receta.objects.get(pk=pk).ingredients.split(',')
+        return context
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.post = self.get_object()

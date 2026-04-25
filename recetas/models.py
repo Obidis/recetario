@@ -7,6 +7,7 @@ class Receta(models.Model):
     recipe_name = models.CharField(max_length=50, blank=True, verbose_name="Nombre")
     image = models.ImageField(upload_to="recetas_images/", verbose_name="Imagen")
     recipes = models.TextField(max_length=1000, blank=True, verbose_name="Descripcion")
+    ingredients = models.CharField(max_length=1000, blank=True, verbose_name="Ingredientes")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creacion")
     likes = models.ManyToManyField(User, related_name="liked_recipes", blank=True, verbose_name="Nº de Likes")
     favourite = models.ManyToManyField(User, related_name='favourite', blank=True)
@@ -17,3 +18,5 @@ class Receta(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.recipe_name}" 
+    
+

@@ -1,11 +1,11 @@
 {% extends 'general/layout.html' %}
 {% load crispy_forms_tags %}
 {% load i18n %}
-{% block head_title %}Instagram Conquer{% endblock %}
+{% block head_title %}Recetario{% endblock %}
 {% block content %}
 
     <section>
-    <h1>Perfil</h1>
+        <h1>Perfil</h1>
         <p>
             {% if profile.profile_picture%}
             <img width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
@@ -24,7 +24,7 @@
     </section>
     <section>
         <h2>Recetas</h2>
-        <div class="d-flex p-2" >
+        <div class="d-flex p-2 gap-3" >
             {% for receta in profile.user.recetas.all %}
                 <div class="col-12 col-sm-4">
                     {% include '_includes/_recetas.html' %}
