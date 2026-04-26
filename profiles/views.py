@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 
-# Create your views here.
+#Contacto
 
 def contact_view(request):
     if request.method == "POST":

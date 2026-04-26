@@ -5,20 +5,29 @@
 {% block content %}
 
 
+<div class="row">
 
-  <h1>Nueva Receta</h1>
-   
-  <form action="" method="post", enctype="multipart/form-data">
-    {% csrf_token %} 
-      <div class="col-12 col-md-6" >
-        {{ form.image | as_crispy_field }}
-        {{ form.recipe_name | as_crispy_field }}
-        {{ form.recipes | as_crispy_field }}
-        {{ form.ingredients | as_crispy_field }}
+  
+  <div class="col-12 col-md-6 offset-md-3">
+  <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Nueva Receta</h1>
+        <hr>
+        
+        <form action="" method="post", enctype="multipart/form-data">
+          {% csrf_token %} 
+          
+              {{ form.image | as_crispy_field }}
+              {{ form.recipe_name | as_crispy_field }}
+              {{ form.recipes | as_crispy_field }}
+              {{ form.ingredients | as_crispy_field }}
+            
+          <button class="btn btn-secondary">Añadir Receta</button>
+        </form>
       </div>
-    <button class="btn btn-secondary">Añadir Receta</button>
-  </form>
-    
+    </div>
 
+  </div>
+ </div>
 
 {% endblock %}
