@@ -4,11 +4,11 @@
 {% block content %}
 
 
-  <div class="row">
-    <h2>Recetas Favoritas</h2>
-  
-    <section class="bg-white border mt-2">
+  <div class="row  offset-md-3" >
+    <h3 class="card-title">Recetas Favoritas</h3>
+    <section class="card  " style="width: 28rem;  ">
       
+  
       {% if favorite_recetas %}
         <ul class="list-group list-group-flush">
           {% for recipe in favorite_recetas %}
