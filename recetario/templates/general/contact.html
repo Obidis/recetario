@@ -2,9 +2,26 @@
 {% load i18n %}
 {% block head_title %}Instagram Conquer{% endblock %}
 {% block content %}
+{% load crispy_forms_tags %}
 
-
-    <h1>Contacto</h1>
-    <p>Esta es la pagina de contacto<p/>
-
+<div class="row">
+    
+    
+    
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Contacto</h1>
+                <hr>
+                <form  action="" method="POST">
+                    {% csrf_token %}
+                    {{formulario|crispy}}
+                    <button class="btn btn-primary">{% trans "Enviar" %}</button>
+                </form>
+                </div>
+            </div>
+        
+        <p>{% trans "Escribenos a:" %} <a href="mailto:contacto@recetario.com">contacto@recetario.com</a></p>
+    </div>
+</div>
 {% endblock %}

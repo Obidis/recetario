@@ -136,3 +136,11 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 #proteccion solo logeados
 LOGIN_URL = reverse_lazy("login")
+
+
+#Email Config
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "keosden@gmail.com"
+EMAIL_HOST_PASSWORD = "qkyz jkam chwp itla"
