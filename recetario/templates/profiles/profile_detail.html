@@ -24,12 +24,16 @@
     </section>
     <section>
         <h2>Recetas</h2>
-        <div class="d-flex p-2 gap-3" >
-            {% for receta in profile.user.recetas.all %}
-                <div class="col-12 col-sm-4">
-                    {% include '_includes/_recetas.html' %}
-                </div>
-            {% endfor %}
+        <div class="container">
+           
+            
+            <div class="d-lg-flex">
+                {% for receta in profile.user.recetas.all %}
+                    <div>
+                        {% include '_includes/_recetas.html' %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </section>
 
