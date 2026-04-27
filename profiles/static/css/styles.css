@@ -1,0 +1,16 @@
+
+   
+header,#card{
+    margin-top: 3rem;
+    background-color: #faf4f6;
+    padding: 1rem;
+}
+h1,h2,h3{
+    color:rgb(210, 11, 220);
+}
+h6{
+    color: #0b5ed7;
+}
+a{
+color: rgb(210, 11, 220);
+}
