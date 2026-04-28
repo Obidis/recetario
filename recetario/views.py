@@ -85,42 +85,6 @@ class LegalView(TemplateView):
 
 
 
-def Contact(request):
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-
-        if form.is_valid():
-           nombre = form.cleaned_data["nombre"]
-           email = form.cleaned_data["email"]
-           comentario = form.cleaned_data["comentario"]
-           messages.add_message(request, messages.SUCCESS, "Comentario enviado correctamente.")
-          
-          
-           Contact.objects.create(
-               nombre = nombre,
-               email = email,
-               comentario = comentario
-           )
-           success = send_mail(
-               messages.add_message(request, messages.SUCCESS, "Comentario enviado correctamente."),
-                
-               "keosden@gmail.com",
-               ["jjsantosfernandez@proton.me"],
-               fail_silently=False,
-           )
-           context = {"form":form, "success": success}
-           return render(request,  "general/contact.html", context)
-        else:
-            context = {
-                "formulario":form
-            }
-            return render(request, "general/contact.html", context)
-    else:
-        form = ContactForm()
-        context = {
-            "formulario":form
-        }
-        return render(request, "general/contact.html", context)
 
 
 
@@ -128,12 +92,20 @@ def Contact(request):
 
 
 
-# Vista para mostrar el perfil de usuario, solo el propio usuario puede ver su perfil
-@method_decorator(login_required, name='dispatch')
-class ProfileDetailView(DetailView):
-    model = UserProfile
-    template_name = "profiles/profile_detail.html"
-    context_object_name = "profile"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Vista para editar el perfil de usuario, solo el propio usuario puede editar su perfil
 @method_decorator(login_required, name="dispatch")

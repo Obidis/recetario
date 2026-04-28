@@ -55,7 +55,7 @@ def contact_view(request):
 class ProfileDetailView(DetailView, FormView):
 
     model = UserProfile
-    template_name = "general/profile_detail.html"
+    template_name = "profiles/profile_detail.html"
     context_object_name = "profile"
     form_class = ProfileFollow
 

@@ -4,24 +4,37 @@
 {% block head_title %}Recetario{% endblock %}
 {% block content %}
 
+<div class="row">
+
     <section>
-        <h1 class="display-6">Perfil</h1>
-        <p>
+        <div id="card" class="card" style="width: 18rem;">
+            
             {% if profile.profile_picture%}
-            <img width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
+            <img class="card-img-top" width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
             {% else %}
                 No dispone de foto de perfil        
             {% endif%}
-        </p>
-        <p>Perfil de {{ request.user.username}}</p>
-        <p>Email: {{ profile.email|default_if_none:'Sin rellenar' }}</p>
-        <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
+        
+           
+            <div class="card-body">
+                <h5 class="card-title">Perfil de {{ profile.user.username}}</h5>
+                
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Email: {{ profile.email|default_if_none:'Sin rellenar' }}</li>
+                <li class="list-group-item">F.nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</li>
+                <li class="list-group-item">Seguidos: {{ profile.followers.count }}</li>
+                 <li class="list-group-item">Seguidores: {{ profile.following.count }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Enlace de tarjeta</a>
+                <a href="#" class="card-link">Otro enlace</a>
+            </div>
+        </div>
+    
 
-        <p>Seguidos: {{ profile.followers.count }}</p>
-        <p>Seguidores: {{ profile.following.count }}</p>
-    
-    
-        {% if profile.user != request.user %}
+
+          {% if profile.user != request.user %}
             <form action="" method="post">
                 {% csrf_token %}
                 {{ form.profile_pk|as_crispy_field}}
@@ -37,7 +50,7 @@
 
         
         {% if profile.user == request.user %}
-            <p><a class="btn btn-light" href="{% url 'profile_update' profile.pk %}">Editar</a></p>
+            <p class="mt-2"><a class="btn btn-light" href="{% url 'profile_update' profile.pk %}">Editar</a></p>
         {% endif %}
   
     </section>
@@ -56,5 +69,5 @@
         </div>
     </section>
 
-   
+</div>  
 {% endblock %}

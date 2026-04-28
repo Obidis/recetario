@@ -4,9 +4,9 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileDetailView, ProfileUpdateView, toggle_favorite
+from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileUpdateView, toggle_favorite
 from recetas.views import RecipeCreateView, RecipeDetailView
-from profiles.views import contact_view, ProfileListView
+from profiles.views import contact_view, ProfileListView, ProfileDetailView
 
 
 urlpatterns = [

@@ -8,10 +8,6 @@
     <div class="row">
       {% for profile in profiles %}
         <article class="col-12 col-sm-4">
-          <h4>{{ profile.user}}</h4>
-          <p>Email: {{ profile.email|default_if_none:'Sin rellenar' }}</p>
-          <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
-          
           <p>
             {% if profile.profile_picture%}
             <img width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
@@ -19,6 +15,11 @@
                 No dispone de foto de perfil        
             {% endif%}
           </p>
+          <h4>{{ profile.user}}</h4>
+          <p>Email: {{ profile.email|default_if_none:'Sin rellenar' }}</p>
+          <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
+          
+          
 
           <p>Seguidores: {{ profile.following.count }}</p>
           <p>Seguidos: {{ profile.followers.count }}</p>

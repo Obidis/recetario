@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     profile_picture = models.ImageField('Imagen de perfil', upload_to='profile_pictures/', blank=True, null=True)
     birth_date = models.DateField('Fecha de nacimiento', null=True, blank=True)
     email = models.EmailField('Correo electrónico', max_length=254, blank=True)
-    favoritos = models.ManyToManyField(User, related_name='favoritos', blank=True)
+    favoritos = models.ManyToManyField(User, related_name='favoritos', blank=True, null=True)
     followers = models.ManyToManyField("self", symmetrical=False, related_name="following", through="Follow")
 
 
