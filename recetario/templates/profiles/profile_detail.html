@@ -16,6 +16,25 @@
         <p>Perfil de {{ request.user.username}}</p>
         <p>Email: {{ profile.email|default_if_none:'Sin rellenar' }}</p>
         <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
+
+        <p>Seguidos: {{ profile.followers.count }}</p>
+        <p>Seguidores: {{ profile.following.count }}</p>
+    
+    
+        {% if profile.user != request.user %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.profile_pk|as_crispy_field}}
+                    {% if following %}
+                        <button>Dejar de seguir</button>
+                    {% else %}
+                        <button>Seguir</button>
+                    {% endif%}
+            </form>
+        {% endif %}
+
+
+
         
         {% if profile.user == request.user %}
             <p><a class="btn btn-light" href="{% url 'profile_update' profile.pk %}">Editar</a></p>
