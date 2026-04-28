@@ -1,15 +1,6 @@
 
 <style>
-  .fixed-image-wrapper {
-    height: 200px; /* O la altura que desees */
-    overflow: hidden;
-  }
-  .fixed-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Recorta la imagen para ajustar sin deformar */
-    object-position: center; /* Centra la imagen */
-  }
+ 
 </style>
 
 
@@ -17,7 +8,7 @@
 
 
 <div  class="container mt-5 ">
-    <div id="card" class="card border border-primary" style="width: 18rem;">
+    <div id="card" class="card " style="width: 18rem;">
         
 
 
@@ -60,7 +51,7 @@
                 <div class="text-center">
                     
                     <p class="text-center mt-3 mb-3">
-                    <a class="btn btn-primary btn-sm" role="button" href="{% url 'receta_detail' receta.pk %}">Ver receta</a>
+                   <a class="btn btn-light" role="button" href="{% url 'receta_detail' receta.pk %}">Ver receta</a>
                     </p>
                 
                 </div>

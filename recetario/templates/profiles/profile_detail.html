@@ -18,7 +18,7 @@
         <p>Fecha nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</p>
         
         {% if profile.user == request.user %}
-            <p><a class="btn btn-primary" href="{% url 'profile_update' profile.pk %}">Editar</a></p>
+            <p><a class="btn btn-light" href="{% url 'profile_update' profile.pk %}">Editar</a></p>
         {% endif %}
   
     </section>

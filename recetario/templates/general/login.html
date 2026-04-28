@@ -1,21 +1,28 @@
 {% extends 'general/layout.html' %}
 {% load crispy_forms_tags %}
 {% load i18n %}
-{% block head_title %}Instagram Conquer{% endblock %}
+{% block head_title %}Recetario-Login{% endblock %}
 {% block content %}
 
-<div class="offset-md-3">
-  <h1>Login</h1>
-  
-  <form action="" method="post">
-  {% csrf_token %} 
-    <div class="col-12 col-md-6" >
-      {{ form.username | as_crispy_field }}
-      {{ form.password | as_crispy_field }}
+
+<div class="row">
+  <div class="col-12 col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Login</h1>
+        <hr>
+        <form action="" method="post">
+        {% csrf_token %} 
+          <div class="col-12 col-md-6" >
+            {{ form.username | as_crispy_field }}
+            {{ form.password | as_crispy_field }}
+          </div>  
+            
+          <button class="btn btn-light">Iniciar sesion</button>
+        </form>
+      </div>
     </div>  
-      
-    <button class="btn btn-primary">Iniciar sesion</button>
-  </form>
+  </div>
 </div>
 
 {% endblock %}
