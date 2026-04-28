@@ -6,7 +6,7 @@
 
 <div class="row">
 
-    <section>
+    <section class="d-flex justify-content-center">
         <div id="card" class="card" style="width: 18rem;">
             
             {% if profile.profile_picture%}
@@ -15,49 +15,50 @@
                 No dispone de foto de perfil        
             {% endif%}
         
-           
             <div class="card-body">
-                <h5 class="card-title">Perfil de {{ profile.user.username}}</h5>
-                
+                <h5 class="card-title">Perfil de: {{ profile.user.username}}</h5>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Email: {{ profile.email|default_if_none:'Sin rellenar' }}</li>
-                <li class="list-group-item">F.nacimiento: {{ profile.birth_date|default_if_none:"Sin rellenar"}}</li>
-                <li class="list-group-item">Seguidos: {{ profile.followers.count }}</li>
-                 <li class="list-group-item">Seguidores: {{ profile.following.count }}</li>
+                <li class="list-group-item"><span class="fw-bold">Email: </span>{{ profile.email|default_if_none:'Sin rellenar' }}</li>
+                <li class="list-group-item"><span class="fw-bold">F.nacimiento: </span>{{ profile.birth_date|date:"d-m-Y"|default_if_none:"Sin rellenar"}}</li>
+                
             </ul>
+            <div class="d-inline-flex p-2 bd-highlight gap-5  justify-content-center">
+                <div class="d-flex flex-column align-items-center">
+                    <span class="fw-bold">Seguidos: </span>
+                    <span class="count">{{ profile.followers.count }}</span>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <span class="fw-bold">Seguidores: </span>
+                    <span class="count">{{ profile.following.count }}</span>
+                </div>
+           </div>
             <div class="card-body">
-                <a href="#" class="card-link">Enlace de tarjeta</a>
-                <a href="#" class="card-link">Otro enlace</a>
+                {% if profile.user != request.user %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.profile_pk|as_crispy_field}}
+                        {% if following %}
+                            <button class="btn btn-light">Siguiendo</button>
+                        {% else %}
+                            <button class="btn btn-light">Seguir</button>
+                        {% endif%}
+                </form>
+                {% endif %}
+                
             </div>
+            {% if profile.user == request.user %}
+            <a class="btn btn-light" href="{% url 'profile_update' profile.pk %}">Editar</a>
+            {% endif %}
         </div>
-    
-
-
-          {% if profile.user != request.user %}
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form.profile_pk|as_crispy_field}}
-                    {% if following %}
-                        <button>Dejar de seguir</button>
-                    {% else %}
-                        <button>Seguir</button>
-                    {% endif%}
-            </form>
-        {% endif %}
-
-
-
+                
         
-        {% if profile.user == request.user %}
-            <p class="mt-2"><a class="btn btn-light" href="{% url 'profile_update' profile.pk %}">Editar</a></p>
-        {% endif %}
   
     </section>
     <section>
         <h2 class="display-6">Recetas</h2>
         <div class="container">
-           
+           {% if profile.user.recetas.all %}
             
             <div class="d-lg-flex">
                 {% for receta in profile.user.recetas.all %}
@@ -66,6 +67,9 @@
                     </div>
                 {% endfor %}
             </div>
+            {% else %}
+                <p class="text-success fs-5 text-sm-center mt-2">No tienes recetas favoritas.</p>
+            {% endif %}
         </div>
     </section>
 
