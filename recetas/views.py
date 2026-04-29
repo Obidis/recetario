@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
@@ -47,4 +47,11 @@ class RecipeDetailView(DetailView):
         messages.add_message(self.request, messages.SUCCESS, "Comentario creado correctamente.")
         return reverse('receta_detail', kwargs={'pk': self.object.pk})         
 
-    
+
+@method_decorator(login_required, name="dispatch")
+class RecipeListView(ListView):
+    model = Receta
+    template_name = "recetas/recetas_list.html"
+    context_object_name = "recetas"
+
+   

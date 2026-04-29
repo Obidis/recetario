@@ -13,9 +13,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, LoginForm
 
 from profiles.models import UserProfile
-from django.views.generic import DetailView, UpdateView ,FormView
+from django.views.generic import  UpdateView ,FormView
 from recetas.models import Receta
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 
@@ -89,6 +89,7 @@ class LegalView(TemplateView):
 
 
 
+    
 
 
 

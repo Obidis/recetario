@@ -16,6 +16,9 @@
                     <a class="nav-link"  href="{% url 'home' %}">Inicio</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'receta_list' %}">Recetas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'profile_list' %}">Perfiles</a>
                 </li>
                 
@@ -31,6 +34,7 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
                     </li>
                 {% if request.user.is_authenticated %}
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'recipe_create' %}">Nueva Receta</a>
                     </li>

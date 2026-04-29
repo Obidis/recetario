@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
-from django.urls import reverse_lazy, reverse
+from django.urls import  reverse
 from django.views.generic import DetailView
 from profiles.models import UserProfile
 from django.views.generic.edit import FormView

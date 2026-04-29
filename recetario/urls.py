@@ -1,11 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-
 from django.conf.urls.static import static
 from django.conf import settings
-
 from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileUpdateView, toggle_favorite
-from recetas.views import RecipeCreateView, RecipeDetailView
+from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView
 from profiles.views import contact_view, ProfileListView, ProfileDetailView
 
 
@@ -17,6 +15,7 @@ urlpatterns = [
     path('legal/', LegalView.as_view(), name="legal"),
     path('recetas/create/', RecipeCreateView.as_view(), name="recipe_create"),
     path('recetas/<pk>/', RecipeDetailView.as_view(), name="receta_detail"),
+    path('receta/list/', RecipeListView.as_view(), name="receta_list"),
     path('contact/', contact_view, name="contact"),
     path('profile/<pk>', ProfileDetailView.as_view(), name='profile_detail'),
     path('profile/update/<pk>/', ProfileUpdateView.as_view(), name="profile_update"),
