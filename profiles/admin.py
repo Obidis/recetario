@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, Contact
+from .models import UserProfile, Contact, Follow
 
 # Register your models here.
 
@@ -11,3 +11,8 @@ class UserProfileAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     model = Contact
     list_display = ["nombre", "email","created_at"]
+
+
+@admin.register(Follow)
+class FollowAdmin(admin.ModelAdmin):
+    list_display = ["follower", "following", "created_at"]

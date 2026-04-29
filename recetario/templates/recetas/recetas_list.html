@@ -1,23 +1,32 @@
 {% extends 'general/layout.html' %}
 {% load crispy_forms_tags %}
 {% load i18n %}
-{% block head_title %}Nueva publicacion{% endblock %}
+{% block head_title %}Recetario List{% endblock %}
 {% block content %}
 
 
 
-  <h1>Nueva publicacion</h1>
+  <h1 class="display-6">Listado completo de recetas</h1>
    
-  <form action="" method="post", enctype="multipart/form-data">
-    {% csrf_token %} 
-      <div class="col-12 col-md-6" >
-        {{ form.image | as_crispy_field }}
-        {{ form.recipe_name | as_crispy_field }}
-       
-       
-      </div>
-    <button class="btn btn-secondary">Publicar</button>
-  </form>
+
+    <div class="d-lg-flex">   
+      {% for receta in recetas%}       
+        <div>
+          {% include  '_includes/_recetas.html' %}
+        </div>
+      {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+
+    
     
 
 

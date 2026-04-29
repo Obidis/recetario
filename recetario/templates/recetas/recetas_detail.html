@@ -68,7 +68,11 @@
                 {% if user.is_authenticated %}
                     <form method="post" action="{% url 'profile_favorites' receta.pk %}">
                     {% csrf_token %}
+<<<<<<< HEAD
                         <button class="btn btn-light" type="submit">
+=======
+                        <button class="btn btn-light"  type="submit">
+>>>>>>> dev
                             {% if user in receta.favourite.all %}
                                 ❌ Quitar de Favoritos
                             {% else %}

@@ -14,3 +14,6 @@ class ContactForm(forms.Form):
         if len(comentario) < 10:
             raise forms.ValidationError("El comentario debe tener al menos 10 caracteres")
         return comentario
+
+class ProfileFollow(forms.Form):
+    profile_pk = forms.IntegerField(widget=forms.HiddenInput())

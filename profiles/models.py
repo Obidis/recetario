@@ -10,7 +10,9 @@ class UserProfile(models.Model):
     profile_picture = models.ImageField('Imagen de perfil', upload_to='profile_pictures/', blank=True, null=True)
     birth_date = models.DateField('Fecha de nacimiento', null=True, blank=True)
     email = models.EmailField('Correo electrónico', max_length=254, blank=True)
-    favoritos = models.ManyToManyField(User, related_name='favoritos', blank=True)
+    favoritos = models.ManyToManyField(User, related_name='favoritos', blank=True, null=True)
+    followers = models.ManyToManyField("self", symmetrical=False, related_name="following", through="Follow")
+
 
     class Meta:
         verbose_name = 'Perfil'
@@ -28,3 +30,19 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+class Follow(models.Model):
+    follower = models.ForeignKey(UserProfile, verbose_name='Seguidores ', on_delete=models.CASCADE, related_name='follower_set')
+    following = models.ForeignKey(UserProfile, verbose_name='Seguidos ', on_delete=models.CASCADE, related_name='following_set')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Seguido desde')
+
+    class Meta:
+        unique_together = ('follower', 'following')
+
+    def __str__(self):
+        return f"{self.follower} follows {self.following}"
+
+    class Meta:
+        verbose_name = 'Seguidor'
+        verbose_name_plural = 'Seguidores'
+
