@@ -92,3 +92,4 @@ class RecipeDeleteView(DeleteView):
     def get_success_url(self):
         return reverse('home')
     
+
