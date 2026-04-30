@@ -1,0 +1,17 @@
+{% extends 'general/layout.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block head_title %}Recetas delete{% endblock %}
+{% block content %}
+<h1 class="display-6">Eliminar receta</h1>
+<div class="d-flex flex-column  gap-3">
+  
+  <div class="d-inline-flex flex-column gap-2">
+    <p class="text-danger">¿Estas seguro de eliminar la receta: {{ receta.recipe_name}}?</p>
+    <img class="img-fluid img-responsive" src="{{ receta.image.url }}"width="300"/>
+  </div>
+  <div><button type="button" class="btn btn-danger">Eliminar</button></div>
+  
+</div>
+
+{% endblock %}

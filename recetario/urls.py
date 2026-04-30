@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileUpdateView, toggle_favorite
-from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView
+from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView, RecipeUpdateView, RecipeDeleteView
 from profiles.views import contact_view, ProfileListView, ProfileDetailView
 
 
@@ -16,10 +16,12 @@ urlpatterns = [
     path('recetas/create/', RecipeCreateView.as_view(), name="recipe_create"),
     path('recetas/<pk>/', RecipeDetailView.as_view(), name="receta_detail"),
     path('receta/list/', RecipeListView.as_view(), name="receta_list"),
+    path('recetas/update/<pk>/', RecipeUpdateView.as_view(), name="recetas_update"),
+    path('recetas/delete/<pk>/', RecipeDeleteView.as_view(), name="recetas_delete"),
     path('contact/', contact_view, name="contact"),
-    path('profile/<pk>', ProfileDetailView.as_view(), name='profile_detail'),
+    path('profile/<pk>/', ProfileDetailView.as_view(), name='profile_detail'),
     path('profile/update/<pk>/', ProfileUpdateView.as_view(), name="profile_update"),
-     path('profile/list/', ProfileListView.as_view(), name='profile_list'),
+    path('profile/list/', ProfileListView.as_view(), name='profile_list'),
     path('profile/favorites/<pk>/', toggle_favorite, name="profile_favorites"),
 
     path('admin/', admin.site.urls),

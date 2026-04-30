@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView,DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
@@ -9,6 +9,7 @@ from .forms import RecipeCreateForm
 from django.urls import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -25,7 +26,7 @@ class RecipeCreateView(CreateView):
         messages.add_message(self.request, messages.SUCCESS, "Receta creada correctamente.")
         return super(RecipeCreateView, self).form_valid(form)
     
-
+#Vista para ver el detalle de las recetas
 @method_decorator(login_required, name="dispatch")
 class RecipeDetailView(DetailView):
     template_name = "recetas/recetas_detail.html"
@@ -47,11 +48,47 @@ class RecipeDetailView(DetailView):
         messages.add_message(self.request, messages.SUCCESS, "Comentario creado correctamente.")
         return reverse('receta_detail', kwargs={'pk': self.object.pk})         
 
-
+#Vista para ver la lista de recetas
 @method_decorator(login_required, name="dispatch")
 class RecipeListView(ListView):
     model = Receta
     template_name = "recetas/recetas_list.html"
     context_object_name = "recetas"
 
-   
+
+#Vista para editar las recetas del usuario, solo el propio usuario puede editar sus recetas!
+class RecipeUpdateView(UpdateView):
+    model = Receta
+    template_name = "recetas/recetas_update.html"
+    fields = "image", "recipe_name", "recipes", "ingredients"
+    success_url = reverse_lazy('home')
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        messages.add_message(self.request, messages.SUCCESS, "Receta editada correctamente.")
+        return super(RecipeUpdateView, self).form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('receta_detail', kwargs={'pk': self.object.pk})
+
+
+#Vista para eliminar las recetas del usuario, solo el propio usuario puede eliminar sus recetas!
+@method_decorator(login_required, name="dispatch")
+class RecipeDeleteView(DeleteView):
+    model = Receta
+    template_name = "recetas/recetas_delete.html"
+    success_url = reverse_lazy('home')
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.SUCCESS, "Receta eliminada correctamente.")
+        return super(RecipeDeleteView, self).form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('home')
+    

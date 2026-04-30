@@ -4,12 +4,11 @@
 {% block head_title %}Recetario List{% endblock %}
 {% block content %}
 
-
-
+<div class="container-fluid ">
   <h1 class="display-6">Listado completo de recetas</h1>
    
 
-    <div class="d-lg-flex">   
+    <div class="d-flex">   
       {% for receta in recetas%}       
         <div>
           {% include  '_includes/_recetas.html' %}
@@ -17,7 +16,7 @@
       {% endfor %}
     </div>
 
-
+</div>
 
 
 
