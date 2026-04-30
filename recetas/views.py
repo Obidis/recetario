@@ -93,3 +93,19 @@ class RecipeDeleteView(DeleteView):
         return reverse('home')
     
 
+class RecipeValoracionView(UpdateView):     
+    model = Receta
+    template_name = "recetas/recetas_valoracion.html"
+    fields = ("valoracion",)
+    success_url = reverse_lazy('home')
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        messages.add_message(self.request, messages.SUCCESS, "Valoracion creada correctamente.")
+        return super(RecipeValoracionView, self).form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('receta_detail', kwargs={'pk': self.object.pk})
