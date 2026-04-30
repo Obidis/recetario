@@ -52,6 +52,7 @@ def contact_view(request):
         return render(request, "general/contact.html", context)
 
 
+@method_decorator(login_required, name="dispatch")
 class ProfileDetailView(DetailView, FormView):
 
     model = UserProfile

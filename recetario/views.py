@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView
-
 from django.views.generic import TemplateView
 from recetas.models import Receta
 from django.contrib.auth import login, authenticate, logout
@@ -11,7 +10,6 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, LoginForm
-
 from profiles.models import UserProfile
 from django.views.generic import  UpdateView ,FormView
 from recetas.models import Receta
@@ -21,7 +19,7 @@ from django.contrib import messages
 
 
 
-
+# viastas del index 
 class HomeView(TemplateView):
     template_name = "general/home.html"
 
@@ -33,7 +31,7 @@ class HomeView(TemplateView):
         return context   
     
 
-
+# vistas de Login
 class LoginView(FormView):
     template_name = "general/login.html"
     form_class = LoginForm
@@ -54,9 +52,7 @@ class LoginView(FormView):
             return super(LoginView, self).form_invalid(form)
 
 
-
-
-
+#vista de logout
 @login_required
 def logout_view(request):
     logout(request)
@@ -64,7 +60,7 @@ def logout_view(request):
     return HttpResponseRedirect(reverse('home'))
 
 
-
+# vista de registro 
 class RegisterView(CreateView):
     template_name = "general/register.html"
     model = User
@@ -77,35 +73,9 @@ class RegisterView(CreateView):
         return super(RegisterView, self).form_valid(form)
 
         
-    
-
-
+# vista de politica de privacidad y cookies
 class LegalView(TemplateView):
     template_name = "general/legal.html"
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Vista para editar el perfil de usuario, solo el propio usuario puede editar su perfil
@@ -132,11 +102,7 @@ class ProfileUpdateView(UpdateView):
         return reverse("profile_detail", args=[self.object.pk])
     
     
-
-
-
 # Vista para mostrar y gestionar las recetas favoritas de un usuario
-
 @login_required
 def toggle_favorite(request, pk):
     user = request.user

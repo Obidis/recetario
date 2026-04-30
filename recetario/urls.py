@@ -19,10 +19,10 @@ urlpatterns = [
     path('recetas/update/<pk>/', RecipeUpdateView.as_view(), name="recetas_update"),
     path('recetas/delete/<pk>/', RecipeDeleteView.as_view(), name="recetas_delete"),
     path('contact/', contact_view, name="contact"),
-    path('profile/<pk>/', ProfileDetailView.as_view(), name='profile_detail'),
-    path('profile/update/<pk>/', ProfileUpdateView.as_view(), name="profile_update"),
+    path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
+    path('profile/update/<int:pk>/', ProfileUpdateView.as_view(), name="profile_update"),
     path('profile/list/', ProfileListView.as_view(), name='profile_list'),
-    path('profile/favorites/<pk>/', toggle_favorite, name="profile_favorites"),
+    path('profile/favorites/<int:pk>/', toggle_favorite, name="profile_favorites"),
 
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
