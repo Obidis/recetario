@@ -9,9 +9,8 @@ from .forms import RecipeCreateForm
 from django.urls import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
 from django.db.models import Q
-from django.utils import timezone
+
 
 # Create your views here.
 
