@@ -1,5 +1,5 @@
  .fixed-image-wrapper {
-    height: 200px; /* O la altura que desees */
+    height: 200px; 
     overflow: hidden;
   }
   .fixed-image-wrapper img {
@@ -9,14 +9,7 @@
     object-position: center; /* Centra la imagen */
   }
    
-header,#card{
-    margin-top: 3rem;
-    background-color: #faf4f6;
-    padding: 1rem;
-    border: 1px solid rgb(210, 11, 220);
-    
-    
-}
+
 h1, h2, h3, h6,.btn{
     color:rgb(229, 132, 235);
 }
