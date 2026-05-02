@@ -3,15 +3,14 @@
 
 <header class=" mb-4">
         
-        
-    <nav class=" navbar navbar-expand-lg ">
+    <nav class=" navbar navbar-expand-lg">
         <img class=".img-fluid. " src="{% static '/imgs/martas_kitchen_logo.png' %}" alt="Logo" class="navbar-brand" width="150">
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse mt-4" id="navbarNav" >
-            <ul class="navbar-nav  mb-2 mb-lg-0 me-auto ">
+            <ul class="navbar-nav  mb-2 mb-lg-0 me-auto text-nowrap">
                 <li class="nav-item">
                     <a class="nav-link"  href="{% url 'home' %}">Inicio</a>
                 </li>
@@ -50,7 +49,12 @@
                 {% endif %}
             </ul>
         </div>
+        
     </nav>
-        
-        
+    <div class="d-inline-flex p-2 bd-highlight">
+        <form class="d-flex" role="search" action={% url "search" %} method="get">
+            <input  name="search"  class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
 </header>

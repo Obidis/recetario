@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileUpdateView, toggle_favorite
-from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView, RecipeUpdateView, RecipeDeleteView, RecipeValoracionView
+from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView, RecipeUpdateView, RecipeDeleteView, RecipeValoracionView, SearchView
 from profiles.views import contact_view, ProfileListView, ProfileDetailView
 
 
@@ -19,6 +19,7 @@ urlpatterns = [
     path('recetas/update/<pk>/', RecipeUpdateView.as_view(), name="recetas_update"),
     path('recetas/delete/<pk>/', RecipeDeleteView.as_view(), name="recetas_delete"),
     path('recetas/valoracion/<pk>/', RecipeValoracionView.as_view(), name="recetas_valoracion"),
+    path('search/', SearchView.as_view(), name="search"),
     path('contact/', contact_view, name="contact"),
     path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
     path('profile/update/<int:pk>/', ProfileUpdateView.as_view(), name="profile_update"),

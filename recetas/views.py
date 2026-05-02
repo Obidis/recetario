@@ -10,6 +10,8 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
+from django.db.models import Q
+from django.utils import timezone
 
 # Create your views here.
 
@@ -109,3 +111,21 @@ class RecipeValoracionView(UpdateView):
     
     def get_success_url(self):
         return reverse('receta_detail', kwargs={'pk': self.object.pk})
+
+
+
+#buscador de recetas
+class SearchView(ListView):
+    model = Receta
+    template_name = "recetas/search.html"
+    context_object_name = "recetas"
+
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        if query:
+            return Receta.objects.filter(
+                Q(recipe_name__icontains=query) | Q(recipes__icontains=query)
+            ).distinct()
+        else:
+            return Receta.objects.none()
+                
