@@ -2,9 +2,9 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileUpdateView, toggle_favorite,SetLanguaView
+from .views import HomeView, LoginView, logout_view, RegisterView, LegalView,toggle_favorite
 from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView, RecipeUpdateView, RecipeDeleteView, RecipeValoracionView, SearchView
-from profiles.views import contact_view, ProfileListView, ProfileDetailView
+from profiles.views import contact_view, ProfileListView, ProfileDetailView, ProfileUpdateView
 from django.urls import re_path, include #para la traduccion
 from django.conf.urls.i18n import i18n_patterns #para la traduccion
 

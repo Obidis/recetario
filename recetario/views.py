@@ -11,7 +11,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, LoginForm
 from profiles.models import UserProfile
-from django.views.generic import  UpdateView ,FormView
+from django.views.generic import FormView
 from recetas.models import Receta
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
@@ -81,30 +81,7 @@ class LegalView(TemplateView):
     template_name = "general/legal.html"
 
 
-# Vista para editar el perfil de usuario, solo el propio usuario puede editar su perfil
-@method_decorator(login_required, name="dispatch")
-class ProfileUpdateView(UpdateView):
-    model = UserProfile
-    template_name = "profiles/profile_update.html"
-    context_object_name = "profile"
-    fields = ["profile_picture", "email", "birth_date"]
 
-    #comprueba que editas tu usuario y no otro
-    def dispatch(self, request, *args, **kwargs):
-        user_profile = self.get_object()
-        if user_profile.user != self.request.user:
-            return HttpResponseRedirect(reverse('home'))
-        return super().dispatch(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        messages.add_message(self.request, messages.SUCCESS, _('Usuario actualizado correctamente.'))
-        return super(ProfileUpdateView, self).form_valid(form)
-
-
-    def get_success_url(self):
-        return reverse("profile_detail", args=[self.object.pk])
-    
-    
 # Vista para mostrar y gestionar las recetas favoritas de un usuario
 @login_required
 def toggle_favorite(request, pk):
@@ -129,14 +106,12 @@ def toggle_favorite(request, pk):
 
 
 class SetLanguaView(View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         language = request.GET.get('language')
         
         if language:
             translation.activate(language)
             request.session[translation.LANGUAGE_SESSION_KEY] = language
-            messages.add_message(request, messages.SUCCESS, _('Idioma cambiado correctamente.'))
-
+        
         next_url = request.GET.get('next', '/')
-
         return HttpResponseRedirect(next_url)
