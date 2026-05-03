@@ -12,7 +12,6 @@ class Receta(models.Model):
     valoracion = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], blank=True, null=True, verbose_name=_("Valoracion"))
     ingredients = models.CharField(max_length=1000, blank=True, verbose_name=_("Ingredientes"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Fecha de creacion"))
-    likes = models.ManyToManyField(User, related_name="liked_recipes", blank=True, verbose_name=_("Nº de Likes"))
     favourite = models.ManyToManyField(User, related_name='favourite', blank=True)
     
     class Meta:
