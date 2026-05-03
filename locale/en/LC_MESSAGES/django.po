@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-03 08:22+0200\n"
-"PO-Revision-Date: 2026-05-03 07:14+0000\n"
+"PO-Revision-Date: 2026-05-03 13:06+0200\n"
 "Last-Translator: Juancho  <juancho@prueba.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1355,17 +1355,17 @@ msgstr "Followed since"
 
 #: profiles/models.py:47
 msgid "Seguidor"
-msgstr ""
+msgstr "Follower"
 
 #: profiles/views.py:87
 #, python-brace-format
 msgid "Se ha dejado de seguir a {following.user.username}"
-msgstr ""
+msgstr "Stop following {following.user.username}"
 
 #: profiles/views.py:93
 #, python-brace-format
 msgid "Se empieza a seguir a {following.user.username}"
-msgstr ""
+msgstr "Start following  {following.user.username}"
 
 #: recetario/settings.py:124
 msgid "Spanish"
@@ -1378,15 +1378,15 @@ msgstr ""
 #: recetario/templates/_includes/_footer.html:8
 #: recetario/templates/general/legal.html:8
 msgid "Aviso Legal"
-msgstr ""
+msgstr "Legal Notice"
 
 #: recetario/templates/_includes/_header.html:16
 msgid "Inicio"
-msgstr ""
+msgstr "Home"
 
 #: recetario/templates/_includes/_header.html:19
 msgid "Recetas"
-msgstr ""
+msgstr "Recipes"
 
 #: recetario/templates/_includes/_header.html:22
 #: recetario/templates/profiles/profile_list.html:10
@@ -1435,47 +1435,47 @@ msgstr "See recipe"
 
 #: recetario/templates/general/contact.html:19
 msgid "Enviar"
-msgstr ""
+msgstr "Send"
 
 #: recetario/templates/general/contact.html:24
 msgid "Escribenos a:"
-msgstr ""
+msgstr "Write to us at:"
 
 #: recetario/templates/general/home.html:7
 msgid "Ultimas Recetas"
-msgstr ""
+msgstr "Latest Recipes"
 
 #: recetario/templates/general/login.html:21
 msgid "Iniciar sesion"
-msgstr ""
+msgstr "Login"
 
 #: recetario/templates/general/register.html:21
 msgid "Registrarse"
-msgstr ""
+msgstr "Register"
 
 #: recetario/templates/profiles/profile_detail.html:22
 #: recetario/templates/profiles/profile_list.html:30
 msgid "Email: "
-msgstr ""
+msgstr "Email:"
 
 #: recetario/templates/profiles/profile_detail.html:23
 #: recetario/templates/profiles/profile_list.html:31
 msgid "F.nacimiento: "
-msgstr ""
+msgstr "Date of birth:"
 
 #: recetario/templates/profiles/profile_detail.html:28
 #: recetario/templates/profiles/profile_list.html:37
 msgid "Seguidos: "
-msgstr ""
+msgstr "Followed:"
 
 #: recetario/templates/profiles/profile_detail.html:32
 #: recetario/templates/profiles/profile_list.html:42
 msgid "Seguidores: "
-msgstr ""
+msgstr "Followers:"
 
 #: recetario/templates/profiles/profile_detail.html:42
 msgid "Siguiendo"
-msgstr ""
+msgstr "Following"
 
 #: recetario/templates/profiles/profile_detail.html:44
 msgid "Seguir"
@@ -1504,7 +1504,7 @@ msgstr "You don't have any favorite recipes."
 
 #: recetario/templates/profiles/profile_list.html:26
 msgid "Perfil de: "
-msgstr "Profile of"
+msgstr "Profile of:"
 
 #: recetario/templates/profiles/profile_list.html:48
 msgid "Ver perfil"
@@ -1521,28 +1521,28 @@ msgstr "Update"
 
 #: recetario/templates/recetas/recetas_create.html:25
 msgid "Añadir Receta"
-msgstr ""
+msgstr "Add recipe"
 
 #: recetario/templates/recetas/recetas_delete.html:6
 msgid "Eliminar receta"
-msgstr ""
+msgstr "Delete recipe"
 
 #: recetario/templates/recetas/recetas_delete.html:10
 msgid "¿Estas seguro de eliminar la receta:"
-msgstr ""
+msgstr "Are you sure you want to delete the recipe?:"
 
 #: recetario/templates/recetas/recetas_delete.html:13
 #: recetario/templates/recetas/recetas_detail.html:83
 msgid "Eliminar"
-msgstr ""
+msgstr "Delete"
 
 #: recetario/templates/recetas/recetas_detail.html:8
 msgid "Detalle de Receta"
-msgstr ""
+msgstr "Recipe detail"
 
 #: recetario/templates/recetas/recetas_detail.html:18
 msgid "Creada por"
-msgstr ""
+msgstr "Created by"
 
 #: recetario/templates/recetas/recetas_detail.html:18
 msgid "el"
@@ -1558,11 +1558,11 @@ msgstr ""
 
 #: recetario/templates/recetas/recetas_detail.html:49
 msgid "Ver ingredientes"
-msgstr ""
+msgstr "See ingredients"
 
 #: recetario/templates/recetas/recetas_detail.html:55
 msgid "No hay ingredientes disponibles."
-msgstr ""
+msgstr "No ingredients available."
 
 #: recetario/templates/recetas/recetas_detail.html:69
 msgid "❌ Quitar de Favoritos"
@@ -1595,7 +1595,7 @@ msgstr "Research"
 
 #: recetario/templates/recetas/search.html:16
 msgid "No se encontraron recetas que coincidan con tu búsqueda!!"
-msgstr "No recipes were found that match your search."
+msgstr "No recipes were found that match your search!!"
 
 #: recetario/views.py:47
 #, python-brace-format
@@ -1608,43 +1608,43 @@ msgstr "Invalid username or invalid password"
 
 #: recetario/views.py:60
 msgid "Se ha cerrado sesión correctamente."
-msgstr ""
+msgstr "Successfully logged out."
 
 #: recetario/views.py:73
 msgid "Usuario creado correctamente."
-msgstr ""
+msgstr "User created successfully."
 
 #: recetario/views.py:98
 msgid "Usuario actualizado correctamente."
-msgstr ""
+msgstr "User updated successfully."
 
 #: recetario/views.py:116
 msgid "Receta eliminada de favoritos."
-msgstr ""
+msgstr "Recipe removed from favorites."
 
 #: recetario/views.py:119
 msgid "Receta añadida a favoritos."
-msgstr ""
+msgstr "Recipe added to favorites."
 
 #: recetas/models.py:8
 msgid "Usuario"
-msgstr ""
+msgstr "User"
 
 #: recetas/models.py:10
 msgid "Imagen"
-msgstr ""
+msgstr "Image"
 
 #: recetas/models.py:11
 msgid "Descripcion"
-msgstr ""
+msgstr "Description"
 
 #: recetas/models.py:12
 msgid "Valoracion"
-msgstr ""
+msgstr "Rate"
 
 #: recetas/models.py:13
 msgid "Ingredientes"
-msgstr ""
+msgstr "Ingredients"
 
 #: recetas/models.py:14
 msgid "Fecha de creacion"
@@ -1656,20 +1656,20 @@ msgstr "Number of Likes"
 
 #: recetas/views.py:26
 msgid "Receta creada correctamente."
-msgstr "Recipe created successfully"
+msgstr "Recipe created successfully."
 
 #: recetas/views.py:48
 msgid "Comentario creado correctamente."
-msgstr "Comment created successfully"
+msgstr "Comment created successfully."
 
 #: recetas/views.py:71
 msgid "Receta editada correctamente."
-msgstr "Recipe edited correctly"
+msgstr "Recipe edited correctly."
 
 #: recetas/views.py:89
 msgid "Receta eliminada correctamente."
-msgstr "Recipe successfully removed"
+msgstr "Recipe successfully removed."
 
 #: recetas/views.py:107
 msgid "Valoracion creada correctamente."
-msgstr "Rating added correctly"
+msgstr "Rating added correctly."

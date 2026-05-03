@@ -5,13 +5,16 @@ from django.contrib import messages
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 from django.urls import  reverse
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView, UpdateView
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from profiles.models import UserProfile
 from django.views.generic.edit import FormView
 from .forms import ProfileFollow
 from django.views.generic import ListView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -117,4 +120,29 @@ class ProfileListView(ListView):
             return UserProfile.objects.all().order_by('user__username').exclude(user=self.request.user)
         return UserProfile.objects.all().order_by('user__username')
 
+
+
+# Vista para editar el perfil de usuario, solo el propio usuario puede editar su perfil
+@method_decorator(login_required, name="dispatch")
+class ProfileUpdateView(UpdateView):
+    model = UserProfile
+    template_name = "profiles/profile_update.html"
+    context_object_name = "profile"
+    fields = ["profile_picture", "email", "birth_date"]
+
+    #comprueba que editas tu usuario y no otro
+    def dispatch(self, request, *args, **kwargs):
+        user_profile = self.get_object()
+        if user_profile.user != self.request.user:
+            return HttpResponseRedirect(reverse('home'))
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        messages.add_message(self.request, messages.SUCCESS, _('Usuario actualizado correctamente.'))
+        return super(ProfileUpdateView, self).form_valid(form)
+
+
+    def get_success_url(self):
+        return reverse("profile_detail", args=[self.object.pk])
+    
     
