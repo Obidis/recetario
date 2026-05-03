@@ -3,8 +3,17 @@
 
 
 
-<footer>
-    <div class="mt-2">
-        <p class="p_footer">Copyright 2026 © <a class="link-danger" href="{% url 'legal' %}">{% trans "Aviso Legal" %}</a></p>
-    </div>
+
+<footer class="container-fluid mt-3" id="footer">
+   
+    <center>
+        <p>
+           &copy;
+           {% now 'Y' %}, 
+            ©Copyright <span class="span">By Ōkami. Ltd.</span><br> 
+            <a class="link-danger" href="{% url 'legal' %}">{% trans "Aviso Legal" %}</a></p>
+        </p>
+    </center>
 </footer>
+ 
+       

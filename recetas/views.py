@@ -28,13 +28,6 @@ class RecipeCreateView(CreateView):
         return super(RecipeCreateView, self).form_valid(form)
     
 #Vista para ver el detalle de las recetas
-
-
-
-
-
-
-
 @method_decorator(login_required, name="dispatch")
 class RecipeDetailView(DetailView):
     template_name = "recetas/recetas_detail.html"
@@ -98,18 +91,6 @@ class RecipeDetailView(DetailView):
 
     
 #Vista para ver la lista de recetas
-
-
-
-
-
-
-
-
-
-
-
-
 @method_decorator(login_required, name="dispatch")
 class RecipeListView(ListView):
     model = Receta

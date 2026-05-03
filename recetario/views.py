@@ -19,6 +19,7 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _ #para la traduccion
 from django.utils import translation
 from django.views import View
+from datetime import datetime
 
 
 
@@ -104,7 +105,7 @@ def toggle_favorite(request, pk):
         'favorite_recetas': favorite_recetas,
     })
 
-
+#Cambio de idioma
 class SetLanguaView(View):
     def get(self, request):
         language = request.GET.get('language')
@@ -115,3 +116,4 @@ class SetLanguaView(View):
         
         next_url = request.GET.get('next', '/')
         return HttpResponseRedirect(next_url)
+    
