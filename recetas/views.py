@@ -58,6 +58,9 @@ class RecipeDetailView(DetailView):
                 context['receta_traducida'] = GoogleTranslator(
                     source='auto', target=idioma_corto
                 ).translate(receta.recipes)
+                #Separar saltos de línea
+                context['receta_traducida'] = context['receta_traducida'].replace('\n', ' ')
+             
             else:
                 context['receta_traducida'] = ''
         except Exception:
