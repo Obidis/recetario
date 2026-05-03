@@ -10,8 +10,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
-
-
+from django.utils.translation import gettext_lazy as _
 # Create your views here.
 
 @method_decorator(login_required, name="dispatch")
@@ -24,7 +23,7 @@ class RecipeCreateView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
 
-        messages.add_message(self.request, messages.SUCCESS, "Receta creada correctamente.")
+        messages.add_message(self.request, messages.SUCCESS, _('Receta creada correctamente.'))
         return super(RecipeCreateView, self).form_valid(form)
     
 #Vista para ver el detalle de las recetas
@@ -46,7 +45,7 @@ class RecipeDetailView(DetailView):
         return super(RecipeDetailView, self).form_valid(form)
     
     def get_success_url(self):
-        messages.add_message(self.request, messages.SUCCESS, "Comentario creado correctamente.")
+        messages.add_message(self.request, messages.SUCCESS, _('Comentario creado correctamente.'))
         return reverse('receta_detail', kwargs={'pk': self.object.pk})         
 
 #Vista para ver la lista de recetas
@@ -69,7 +68,7 @@ class RecipeUpdateView(UpdateView):
     
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages.add_message(self.request, messages.SUCCESS, "Receta editada correctamente.")
+        messages.add_message(self.request, messages.SUCCESS, _('Receta editada correctamente.'))
         return super(RecipeUpdateView, self).form_valid(form)
     
     def get_success_url(self):
@@ -87,7 +86,7 @@ class RecipeDeleteView(DeleteView):
         return self.model.objects.filter(user=self.request.user)
 
     def form_valid(self, form):
-        messages.add_message(self.request, messages.SUCCESS, "Receta eliminada correctamente.")
+        messages.add_message(self.request, messages.SUCCESS, _('Receta eliminada correctamente.'))
         return super(RecipeDeleteView, self).form_valid(form)
     
     def get_success_url(self):
@@ -105,7 +104,7 @@ class RecipeValoracionView(UpdateView):
     
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages.add_message(self.request, messages.SUCCESS, "Valoracion creada correctamente.")
+        messages.add_message(self.request, messages.SUCCESS, _('Valoracion creada correctamente.'))
         return super(RecipeValoracionView, self).form_valid(form)
     
     def get_success_url(self):

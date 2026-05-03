@@ -16,6 +16,9 @@ from recetas.models import Receta
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _ #para la traduccion
+from django.utils import translation
+from django.views import View
 
 
 
@@ -43,12 +46,12 @@ class LoginView(FormView):
 
         if user is not None:
             login(self.request, user)
-            messages.add_message(self.request, messages.SUCCESS, f'Bienvenido de nuevo {user.username}')
+            messages.add_message(self.request, messages.SUCCESS, _(f'Bienvenido de nuevo {user.username}'))
             return HttpResponseRedirect(reverse('home'))
 
         else:
             messages.add_message(
-                self.request, messages.ERROR, 'Usuario no válido o contraseña no válida')
+                self.request, messages.ERROR, _('Usuario no válido o contraseña no válida'))
             return super(LoginView, self).form_invalid(form)
 
 
@@ -56,7 +59,7 @@ class LoginView(FormView):
 @login_required
 def logout_view(request):
     logout(request)
-    messages.add_message(request, messages.INFO, "Se ha cerrado sesión correctamente.")
+    messages.add_message(request, messages.INFO, _('Se ha cerrado sesión correctamente.'))
     return HttpResponseRedirect(reverse('home'))
 
 
@@ -69,7 +72,7 @@ class RegisterView(CreateView):
 
     
     def form_valid(self, form):
-        messages.add_message(self.request, messages.SUCCESS, "Usuario creado correctamente.")
+        messages.add_message(self.request, messages.SUCCESS, _('Usuario creado correctamente.'))
         return super(RegisterView, self).form_valid(form)
 
         
@@ -94,7 +97,7 @@ class ProfileUpdateView(UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        messages.add_message(self.request, messages.SUCCESS, "Usuario acutalizado correctamente.")
+        messages.add_message(self.request, messages.SUCCESS, _('Usuario actualizado correctamente.'))
         return super(ProfileUpdateView, self).form_valid(form)
 
 
@@ -112,10 +115,10 @@ def toggle_favorite(request, pk):
         receta = get_object_or_404(Receta, pk=pk)
         if user in receta.favourite.all():
             receta.favourite.remove(user)
-            messages.add_message(request, messages.INFO, "Receta eliminada de favoritos.")
+            messages.add_message(request, messages.INFO, _('Receta eliminada de favoritos.'))
         else:
             receta.favourite.add(user)
-            messages.add_message(request, messages.SUCCESS, "Receta añadida a favoritos.")
+            messages.add_message(request, messages.SUCCESS, _('Receta añadida a favoritos.'))
         return HttpResponseRedirect(reverse('receta_detail', args=[pk]))
 
     # GET: pk is a UserProfile pk — show favourites page
@@ -123,3 +126,17 @@ def toggle_favorite(request, pk):
     return render(request, 'profiles/profile_favorites.html', {
         'favorite_recetas': favorite_recetas,
     })
+
+
+class SetLanguaView(View):
+    def get(self, request, *args, **kwargs):
+        language = request.GET.get('language')
+        
+        if language:
+            translation.activate(language)
+            request.session[translation.LANGUAGE_SESSION_KEY] = language
+            messages.add_message(request, messages.SUCCESS, _('Idioma cambiado correctamente.'))
+
+        next_url = request.GET.get('next', '/')
+
+        return HttpResponseRedirect(next_url)

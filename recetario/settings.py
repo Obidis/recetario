@@ -1,7 +1,9 @@
 
 
 from pathlib import Path
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy #para la proteccion de solo logeados
+from django.utils.translation import gettext_lazy as _ #para la traduccion
+import os #para la traduccion
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,6 +25,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Translation
+    'modeltranslation',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,6 +38,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'crispy_bootstrap5',
+    'rosetta',
+    
     'django_sass',
 
      'recetas',
@@ -48,11 +55,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', #para la traduccion
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware', #
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   
+
 ]
 
 ROOT_URLCONF = 'recetario.urls'
@@ -68,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',  # para la traduccion
             ],
         },
     },
@@ -109,13 +120,25 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-ES'
 
-TIME_ZONE = 'UTC'
 
+LOCALE_PATHS = [
+   os.path.join(BASE_DIR, 'locale'), #para la traduccion
+]
+
+TIME_ZONE = 'Europe/Madrid'
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
+PREFIX_DEFAULT_LANGUAGE = True #para la traduccion
+
+LANGUAGE_CODE = 'es-ES'
+LANGUAGES = [
+    ('es', _('Spanish')),    #para la traduccion
+    ('en', _('English')),
+]
+
+LANGUAGE_COOKIES_NAME = 'django_language' #para la traduccion
 
 
 

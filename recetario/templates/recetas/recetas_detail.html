@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="row">
-  <h2 class="display-6">Detalle de Receta</h2>
+  <h2 class="display-6">{% trans "Detalle de Receta" %}</h2>
   <section class="comments p-2 px-3">
     <div class="bg-white border mt-2">
       <div class="d-flex flex-row align-items-center feed-text px-2">
@@ -15,7 +15,7 @@
           width="100"
         />
         <p class="font-weight-bold">
-          Creada por {{ receta.user.first_name }} el - {{ receta.created_at|date:"d-m-Y" }}
+          {% trans "Creada por" %} {{ receta.user.first_name }} {% trans "el" %}   - {{ receta.created_at|date:"d-m-Y" }}
         </p>
       </div>
 
@@ -25,14 +25,13 @@
         class="d-flex flex-row justify-content-between align-items-center p-2"
       >
         <div class="p-2 px-3 d-flex flex-column align-items-center">
-          <h3
-            class="font-weight-bold d-flex flex-row align-items-center feed-text px-2"
-          >
-            {{ receta.recipe_name}}
+          <h3 class="font-weight-bold d-flex flex-row align-items-center feed-text px-2" > {{ receta.recipe_name}}
           </h3>
 
           <div class="d-flex flex-row align-items-center feed-text px-2">
+          {% blocktrans %}
             <p class="text-black-50 time">{{ receta.recipes }}</p>
+          {% endblocktrans %}
           </div>
 
           <div class="d-flex justify-content-space-around feed-text px-2">
@@ -47,13 +46,13 @@
 
             <div>
               <details>
-                <summary>Ver ingredientes</summary>
+                <summary>{% trans "Ver ingredientes" %}</summary>
                 {% if ingredientes %}
                 <ul>
                   {% for ingredient in ingredientes %}
                   <li>{{ ingredient }}</li>
                   {% endfor %} {% else %}
-                  <p>No hay ingredientes disponibles.</p>
+                  <p>{% trans "No hay ingredientes disponibles." %}</p>
                   {% endif %}
                 </ul>
               </details>
@@ -67,9 +66,9 @@
           {% csrf_token %}
           <button class="btn btn-light º" type="submit">
             {% if user in receta.favourite.all %}
-               ❌ Quitar de Favoritos
+              {% trans "❌ Quitar de Favoritos" %}
             {% else %}
-               ⭐ Agregar a Favoritos {% endif %}
+              {% trans "⭐ Agregar a Favoritos" %} {% endif %}
           </button>
         </form>
         {% endif %}
@@ -78,13 +77,13 @@
 
     {% if user.is_authenticated and user == receta.user %}
     <a class="btn btn-light" href="{% url 'recetas_update' receta.pk %}"
-      >Editar</a
+      >{% trans "Editar" %}</a
     >
     <a class="btn btn-light" href="{% url 'recetas_delete' receta.pk %}"
-      >Eliminar</a
+      >{% trans "Eliminar" %}</a
     >
     <a class="btn btn-light" href="{% url 'recetas_valoracion' receta.pk %}"
-      >Valorar</a
+      >{% trans "Valorar" %}</a
     >
 
     {% endif %}

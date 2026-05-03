@@ -3,14 +3,14 @@
 {% load i18n %}
 {% block head_title %}Recetas delete{% endblock %}
 {% block content %}
-<h1 class="display-6">Eliminar receta</h1>
+<h1 class="display-6">{% trans "Eliminar receta" %}</h1>
 <div class="d-flex flex-column  gap-3">
   
   <div class="d-inline-flex flex-column gap-2">
-    <p class="text-danger">¿Estas seguro de eliminar la receta: {{ receta.recipe_name}}?</p>
+    <p class="text-danger">{% trans "¿Estas seguro de eliminar la receta:" %} {{ receta.recipe_name}}?</p>
     <img class="img-fluid img-responsive" src="{{ receta.image.url }}"width="300"/>
   </div>
-  <div><button type="button" class="btn btn-danger">Eliminar</button></div>
+  <div><button type="button" class="btn btn-danger">{% trans "Eliminar" %}</button></div>
   
 </div>
 

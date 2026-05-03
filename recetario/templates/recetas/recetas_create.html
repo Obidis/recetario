@@ -11,7 +11,7 @@
     <div class="col-12 col-md-6 offset-md-3">
       <div class="card">
           <div class="card-body">
-            <h1 class="card-title">Nueva Receta</h1>
+            <h1 class="card-title">{% trans "Nueva Receta" %}</h1>
             <hr>
             
             <form action="" method="post", enctype="multipart/form-data">
@@ -22,7 +22,7 @@
                   {{ form.recipes | as_crispy_field }}
                   {{ form.ingredients | as_crispy_field }}
                 
-              <button class="btn btn-light">Añadir Receta</button>
+              <button class="btn btn-light">{% trans "Añadir Receta" %}</button>
             </form>
           </div>
         

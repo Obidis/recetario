@@ -2,7 +2,7 @@
 {% block head_title %}Recetas buscador{% endblock %}
 {% block content %}
 
-<h1>Buscador</h1>
+<h1>{% trans "Buscador" %}</h1>
 
 {% if recetas %}
     <div class="d-flex flex-wrap">
@@ -13,7 +13,7 @@
         {% endfor %}
     </div>
 {% else %}
-    <p class="p-5 text-center fs-5 fw-bold text-danger">No se encontraron recetas que coincidan con tu búsqueda!!</p>
+    <p class="p-5 text-center fs-5 fw-bold text-danger">{% trans "No se encontraron recetas que coincidan con tu búsqueda!!" %}</p>
 {% endif %}
 
 {% endblock %}

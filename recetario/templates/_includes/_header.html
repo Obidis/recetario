@@ -1,5 +1,6 @@
 
 {% load static %}
+{% load i18n %}
 
 <header class=" mb-4">
         
@@ -12,39 +13,39 @@
         <div class="collapse navbar-collapse mt-4" id="navbarNav" >
             <ul class="navbar-nav  mb-2 mb-lg-0 me-auto text-nowrap">
                 <li class="nav-item">
-                    <a class="nav-link"  href="{% url 'home' %}">Inicio</a>
+                    <a class="nav-link"  href="{% url 'home' %}">{% trans "Inicio" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'receta_list' %}">Recetas</a>
+                    <a class="nav-link" href="{% url 'receta_list' %}">{% trans "Recetas" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile_list' %}">Perfiles</a>
+                    <a class="nav-link" href="{% url 'profile_list' %}">{% trans "Perfiles" %}</a>
                 </li>
                 
                 {% if not request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Registro</a>
+                        <a class="nav-link" href="{% url 'register' %}">{% trans "Registro" %}</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
+                        <a class="nav-link" href="{% url 'contact' %}">{% trans "Contacto" %}</a>
                     </li>
                 {% if request.user.is_authenticated %}
                    
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'recipe_create' %}">Nueva Receta</a>
+                        <a class="nav-link" href="{% url 'recipe_create' %}">{% trans "Nueva Receta" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile_detail' request.user.profile.pk %}">Mi Perfil</a>
+                        <a class="nav-link" href="{% url 'profile_detail' request.user.profile.pk %}">{% trans "Mi Perfil" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile_favorites' request.user.profile.pk %}">Favoritos</a>
+                        <a class="nav-link" href="{% url 'profile_favorites' request.user.profile.pk %}">{% trans "Favoritos" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                        <a class="nav-link" href="{% url 'logout' %}">{% trans "Cerrar sesion" %}</a>
                     </li>
                 {% endif %}
             </ul>
@@ -52,9 +53,20 @@
         
     </nav>
     <div class="d-inline-flex p-2 bd-highlight">
-        <form class="d-flex" role="search" action={% url "search" %} method="get">
-            <input  name="search"  class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
+        <form method="post" action="{% url 'set_language' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}" />
+            <button type="submit" name="language" value="es" class="btn btn-link"><img src="{% static 'imgs/es.svg' %}" class="img-fluid rounded-circle" alt="Responsive image" width="30" height="30"></button>
+            <button type="submit" name="language" value="en" class="btn btn-link"><img src="{% static 'imgs/gb.svg' %}" class="img-fluid rounded-circle" alt="Responsive image" width="30" height="30"></button>
         </form>
     </div>
+
+    <div class="d-inline-flex p-2 bd-highlight">
+        <form class="d-flex" role="search" action={% url "search" %} method="get">
+            <input  name="search"  class="form-control me-2" type="search" placeholder="{% trans "Search" %}" aria-label="{% trans "Search" %}"/>
+            <button class="btn btn-outline-success" type="submit">{% trans "Search" %}</button>
+        </form>
+        
+    </div>
+   
 </header>

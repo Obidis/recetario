@@ -7,3 +7,5 @@ django-sass==1.1.0
 libsass==0.23.0
 pillow==12.2.0
 sqlparse==0.5.5
+django-rosetta==0.10.3
+django-modeltranslation==0.20.0

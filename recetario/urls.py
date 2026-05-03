@@ -2,12 +2,20 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileUpdateView, toggle_favorite
+from .views import HomeView, LoginView, logout_view, RegisterView, LegalView, ProfileUpdateView, toggle_favorite,SetLanguaView
 from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView, RecipeUpdateView, RecipeDeleteView, RecipeValoracionView, SearchView
 from profiles.views import contact_view, ProfileListView, ProfileDetailView
-
+from django.urls import re_path, include #para la traduccion
+from django.conf.urls.i18n import i18n_patterns #para la traduccion
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')), #para la traduccion
+]
+
+
+urlpatterns += i18n_patterns(
+    re_path(r'^rosetta/', include('rosetta.urls')),
+  
     path('', HomeView.as_view(), name="home"),
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', logout_view, name="logout"),
@@ -25,6 +33,5 @@ urlpatterns = [
     path('profile/update/<int:pk>/', ProfileUpdateView.as_view(), name="profile_update"),
     path('profile/list/', ProfileListView.as_view(), name='profile_list'),
     path('profile/favorites/<int:pk>/', toggle_favorite, name="profile_favorites"),
-
     path('admin/', admin.site.urls),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

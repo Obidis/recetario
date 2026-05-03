@@ -6,7 +6,7 @@
 
 
 
-  <h1>Editar receta</h1>
+  <h1>{% trans "Editar receta" %}</h1>
    
   <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %} 
@@ -18,7 +18,7 @@
         {{ form.ingredients | as_crispy_field }}
        
       </div>
-    <button class="btn btn-light">Actualizar</button>
+    <button class="btn btn-light">{% trans "Actualizar" %}</button>
   </form>
     
 

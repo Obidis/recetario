@@ -1,4 +1,4 @@
-
+{% load i18n %}
 
 <div  class="container mt-5 ">
     <div id="card" class="card " style="width: 18rem;">
@@ -44,7 +44,7 @@
                 <div class="text-center">
                     
                     <p class="text-center mt-3 mb-3">
-                   <a class="btn btn-light" role="button" href="{% url 'receta_detail' receta.pk %}">Ver receta</a>
+                   <a class="btn btn-light" role="button" href="{% url 'receta_detail' receta.pk %}">{% trans "Ver receta" %}</a>
                     </p>
                 
                 </div>
