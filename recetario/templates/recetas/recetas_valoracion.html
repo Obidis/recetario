@@ -1,10 +1,28 @@
 {% extends 'general/layout.html' %} {% load crispy_forms_tags %} {% load i18n %}
 {% block head_title %}Recetas update{% endblock %} {% block content %}
 
-<h1>{% trans "Valorar receta" %}</h1>
-<form method="post">
-  {% csrf_token %} {{ form|crispy }}
-  <button type="submit">{% trans "Valorar" %}</button>
+
+
+
+
+
+
+
+
+
+<h1>{% trans "Valorar receta" %} {{ nombre_traducido }}</h1>
+<p>Valoración actual: ⭐ {{ receta.promedio_valoracion|format:".1f" }}</p>
+
+<form action="{% url 'valorar_receta' receta.id %}" method="post">
+    {% csrf_token %}
+    <select name="puntos">
+        <option value="1">1 - Mala</option>
+        <option value="2">2 - Regular</option>
+        <option value="3">3 - Buena</option>
+        <option value="4">4 - Muy buena</option>
+        <option value="5">5 - Excelente</option>
+    </select>
+    <button type="submit">Enviar valoración</button>
 </form>
 
 {% endblock %}
