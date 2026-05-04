@@ -14,11 +14,4 @@ class RecipeCreateForm(forms.ModelForm):
            
         ]
 
-class recipeValoracionForm(forms.ModelForm):
-    class Meta:
-        model = Receta
-        fields = [
-            "valoracion",
-           
-        ]
 

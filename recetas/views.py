@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .models import Receta
+from .models import Receta, Valoracion
 from .forms import RecipeCreateForm
 from django.urls import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
@@ -12,6 +12,8 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from deep_translator import GoogleTranslator
+from django.shortcuts import redirect, get_object_or_404
+from django.db.models import Avg
 # Create your views here.
 
 @method_decorator(login_required, name="dispatch")
@@ -138,22 +140,6 @@ class RecipeDeleteView(DeleteView):
         return reverse('home')
     
 
-class RecipeValoracionView(UpdateView):     
-    model = Receta
-    template_name = "recetas/recetas_valoracion.html"
-    fields = ("valoracion",)
-    success_url = reverse_lazy('home')
-
-    def get_queryset(self):
-        return self.model.objects.filter(user=self.request.user)
-    
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        messages.add_message(self.request, messages.SUCCESS, _('Valoracion creada correctamente.'))
-        return super(RecipeValoracionView, self).form_valid(form)
-    
-    def get_success_url(self):
-        return reverse('receta_detail', kwargs={'pk': self.object.pk})
 
 
 
@@ -172,3 +158,39 @@ class SearchView(ListView):
         else:
             return Receta.objects.none()
                 
+
+
+#Vista para valorar las recetas, el usuario solo puede valorar una vez cada receta, si vuelve a valorar la misma receta se actualiza la valoración
+@login_required
+def valorar_receta(request, pk):
+    receta = get_object_or_404(Receta, pk=pk)
+
+    if request.method == 'POST':
+        puntos = request.POST.get('puntos')
+
+        if puntos:
+            valoracion_obj, created = Valoracion.objects.get_or_create(
+                usuario=request.user,
+                receta=receta,
+                defaults={'puntos': int(puntos)}
+            )
+            if not created:
+                valoracion_obj.puntos = int(puntos)
+                valoracion_obj.save()
+                messages.add_message(request, messages.SUCCESS, _('Valoración actualizada correctamente.'))
+            else:
+                messages.add_message(request, messages.SUCCESS, _('Valoración creada correctamente.'))
+        else:
+            messages.add_message(request, messages.ERROR, _('No se proporcionó una valoración válida.'))
+        return redirect('receta_detail', pk=pk)
+
+       
+    return render(request, 'recetas/recetas_valoracion.html' , {'receta': receta})
+    
+    
+    
+
+    
+    #solo una valoracion por usuario si el usuario ya ha valorado la receta se muestra su valoración actual y un mensaje indicando que ya ha valorado la receta
+   
+  

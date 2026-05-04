@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import HomeView, LoginView, logout_view, RegisterView, LegalView,toggle_favorite
-from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView, RecipeUpdateView, RecipeDeleteView, RecipeValoracionView, SearchView
+from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView, RecipeUpdateView, RecipeDeleteView, SearchView, valorar_receta
 from profiles.views import contact_view, ProfileListView, ProfileDetailView, ProfileUpdateView
 from django.urls import re_path, include #para la traduccion
 from django.conf.urls.i18n import i18n_patterns #para la traduccion
@@ -26,7 +26,7 @@ urlpatterns += i18n_patterns(
     path('receta/list/', RecipeListView.as_view(), name="receta_list"),
     path('recetas/update/<pk>/', RecipeUpdateView.as_view(), name="recetas_update"),
     path('recetas/delete/<pk>/', RecipeDeleteView.as_view(), name="recetas_delete"),
-    path('recetas/valoracion/<pk>/', RecipeValoracionView.as_view(), name="recetas_valoracion"),
+    path('recetas/valoracion/<pk>/', valorar_receta, name="valorar_receta"),
     path('search/', SearchView.as_view(), name="search"),
     path('contact/', contact_view, name="contact"),
     path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),

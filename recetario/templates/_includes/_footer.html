@@ -1,5 +1,5 @@
 {% load i18n %}
-
+{% load static %}
 
 
 
@@ -11,7 +11,7 @@
            &copy;
            {% now 'Y' %}, 
             ©Copyright <span class="span">By Ōkami. Ltd.</span><br> 
-            <a class="link-danger" href="{% url 'legal' %}">{% trans "Aviso Legal" %}</a></p>
+            <a class="link-danger" href="{% static 'docs/Aviso_Legal.pdf' %}" target="_blank">{% trans "Aviso Legal" %}</a></p>
         </p>
     </center>
 </footer>
