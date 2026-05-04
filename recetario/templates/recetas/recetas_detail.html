@@ -9,13 +9,9 @@
   <section class="comments p-2 px-3">
     <div class="bg-white border mt-2">
       <div class="d-flex flex-row align-items-center feed-text px-2">
-        <img
-          class="rounded-circle"
-          src="{{ receta.user.profile.profile_picture.url }}"
-          width="100"
-        />
+        <img class="rounded-circle" src="{{ receta.user.profile.profile_picture.url }}" width="100"/>
         <p class="font-weight-bold">
-          {% trans "Creada por" %} {{ receta.user.first_name }} {% trans "el" %}   - {{ receta.created_at|date:"d-m-Y" }}
+          {% trans "Creada por" %} {{ receta.user.first_name }} {% trans "el" %} - {{ receta.created_at|date:"d-m-Y" }}
         </p>
       </div>
 
@@ -25,23 +21,22 @@
         class="d-flex flex-row justify-content-between align-items-center p-2"
       >
         <div class="p-2 px-3 d-flex flex-column align-items-center">
-          <h3 class="font-weight-bold d-flex flex-row align-items-center feed-text px-2" > {{ nombre_traducido }}
-          </h3>
+          <h3 class="font-weight-bold d-flex flex-row align-items-center feed-text px-2">{{ nombre_traducido }}</h3>
 
           <div class="d-flex flex-row align-items-center feed-text px-2">
-          
             <p class="text-black-50 time">{{ receta_traducida|linebreaks }}</p>
-         
           </div>
 
           <div class="d-flex justify-content-space-around feed-text px-2">
             <div class="d-flex flex-column align-items-center feed-text px-5">
-              <img
-                class="img-fluid img-responsive"
-                src="{{ receta.image.url }}"
-                width="300"
-              />
-             
+              <img class="img-fluid img-responsive" src="{{ receta.image.url }}" width="300"/>
+              <p class="rate">
+                {% trans "Valoraciónes: " %}
+                <span class="count">{{ receta.num_valoraciones}} ⭐</span>
+                {% trans "Total: " %}
+                <span class="count">{{ receta.promedio_valoracion|floatformat:"1" }} ⭐</span>
+              </p>
+              
             </div>
 
             <div>
@@ -51,26 +46,30 @@
                 <ul>
                   {% for ingredient in ingredientes %}
                   <li>{{ ingredient }}</li>
-                  {% endfor %} {% else %}
+                  {% endfor %}
+                {% else %}
                   <p>{% trans "No hay ingredientes disponibles." %}</p>
-                  {% endif %}
+                {% endif %}
                 </ul>
               </details>
             </div>
           </div>
         </div>
       </div>
-      <div class="d-flex align-items-center justify-content-center feed-text px-2">
+      <div
+        class="d-flex align-items-center justify-content-center feed-text px-2"
+      >
         {% if user.is_authenticated %}
-        <form method="post" action="{% url 'profile_favorites' receta.pk %}">
-          {% csrf_token %}
-          <button class="btn btn-light º" type="submit">
-            {% if user in receta.favourite.all %}
-              {% trans "❌ Quitar de Favoritos" %}
-            {% else %}
-              {% trans "⭐ Agregar a Favoritos" %} {% endif %}
-          </button>
-        </form>
+          <form method="post" action="{% url 'profile_favorites' receta.pk %}">
+            {% csrf_token %}
+            <button class="btn btn-light º" type="submit">
+              {% if user in receta.favourite.all %}
+                {% trans "❌ Quitar deFavoritos" %}
+              {% else %}
+               {% trans "⭐ Agregar a Favoritos" %}
+              {% endif %}
+            </button>
+          </form>
         {% endif %}
       </div>
     </div>
@@ -82,10 +81,10 @@
     <a class="btn btn-light" href="{% url 'recetas_delete' receta.pk %}"
       >{% trans "Eliminar" %}</a
     >
-    <a class="btn btn-light" href="{% url 'recetas_valoracion' receta.pk %}"
+    {% endif %} {% if user.is_authenticated %}
+    <a class="btn btn-light" href="{% url 'valorar_receta' receta.pk %}"
       >{% trans "Valorar" %}</a
     >
-
     {% endif %}
   </section>
 </div>

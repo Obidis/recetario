@@ -7,7 +7,7 @@ from .models import Receta
 
 @admin.register(Receta)
 class RecetaAdmin(admin.ModelAdmin):
-    list_display = ["user", "recipe_name", "created_at", "valoracion" ]
+    list_display = ["user", "recipe_name", "created_at" ]
 
 
 

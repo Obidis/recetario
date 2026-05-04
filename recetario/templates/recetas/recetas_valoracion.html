@@ -1,28 +1,28 @@
 {% extends 'general/layout.html' %} {% load crispy_forms_tags %} {% load i18n %}
 {% block head_title %}Recetas update{% endblock %} {% block content %}
 
+<div class="row d-flex justify-content-center border p-4">
+  <h1 class="text-center  display-6 ">{% trans "Valorar receta" %} {{ nombre_traducido }}</h1>
+  <p class=" rate text-center">Valoración actual: <span class="count">⭐ {{ receta.promedio_valoracion|floatformat:"1" }}</span></p>
+ 
 
-
-
-
-
-
-
-
-
-<h1>{% trans "Valorar receta" %} {{ nombre_traducido }}</h1>
-<p>Valoración actual: ⭐ {{ receta.promedio_valoracion|format:".1f" }}</p>
-
-<form action="{% url 'valorar_receta' receta.id %}" method="post">
-    {% csrf_token %}
-    <select name="puntos">
+  <div class="input-group mb-3 d-flex align-items-center justify-content-center feed-text px-2">
+    
+    <form action="{% url 'valorar_receta' receta.id %}" method="post">
+      {% csrf_token %}
+      <select class="custom-select border-0"  id="inputGroupSelect01" name="puntos">
+        <option selected>Opciones</option>
         <option value="1">1 - Mala</option>
         <option value="2">2 - Regular</option>
         <option value="3">3 - Buena</option>
         <option value="4">4 - Muy buena</option>
         <option value="5">5 - Excelente</option>
-    </select>
-    <button type="submit">Enviar valoración</button>
-</form>
+      </select>
+      <button class="btn btn-light" type="submit">{% trans "Valorar" %}</button>
+    </form>
+  </div>
+</div>
+
+
 
 {% endblock %}

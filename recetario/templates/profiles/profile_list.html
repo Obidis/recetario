@@ -16,7 +16,7 @@
         <div id="card" class="card" style="width: 18rem;">
 
           {% if profile.profile_picture %}
-            <img class="card-img-top" width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
+            <img class="card-img-top" width="100" src="{{ profile.profile_picture.url }}" alt="foto"><a  href="{% url 'profile_detail' profile.pk %}" class="stretched-link"></a></img>
           {% else %}
                No dispone de foto de perfil        
           {% endif %}
@@ -44,9 +44,7 @@
             </div>
         </div>
 
-        <div class="card-body d-flex justify-content-center">
-          <a  class="btn btn-light" role= "button" href="{% url 'profile_detail' profile.pk %}">{% trans "Ver perfil" %}</a>
-        </div>
+        
       </div>
       {% endfor %}
     </section>
