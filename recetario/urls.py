@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import HomeView, LoginView, logout_view, RegisterView, LegalView,toggle_favorite
+from .views import HomeView, LoginView, logout_view, RegisterView, toggle_favorite
 from recetas.views import RecipeCreateView, RecipeDetailView, RecipeListView, RecipeUpdateView, RecipeDeleteView, SearchView, valorar_receta
 from profiles.views import contact_view, ProfileListView, ProfileDetailView, ProfileUpdateView
 from django.urls import re_path, include #para la traduccion
@@ -20,7 +20,6 @@ urlpatterns += i18n_patterns(
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', logout_view, name="logout"),
     path('register/', RegisterView.as_view(), name="register"),
-    path('legal/', LegalView.as_view(), name="legal"),
     path('recetas/create/', RecipeCreateView.as_view(), name="recipe_create"),
     path('recetas/<pk>/', RecipeDetailView.as_view(), name="receta_detail"),
     path('receta/list/', RecipeListView.as_view(), name="receta_list"),

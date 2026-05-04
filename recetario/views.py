@@ -76,13 +76,7 @@ class RegisterView(CreateView):
         messages.add_message(self.request, messages.SUCCESS, _('Usuario creado correctamente.'))
         return super(RegisterView, self).form_valid(form)
 
-        
-# vista de politica de privacidad y cookies
-class LegalView(TemplateView):
-    template_name = "general/legal.html"
-
-
-
+  
 # Vista para mostrar y gestionar las recetas favoritas de un usuario
 @login_required
 def toggle_favorite(request, pk):
