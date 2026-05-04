@@ -30,9 +30,9 @@
           <div class="d-flex justify-content-space-around feed-text px-2">
             <div class="d-flex flex-column align-items-center feed-text px-5">
               <img class="img-fluid img-responsive" src="{{ receta.image.url }}" width="300"/>
-              <p class="rate">
+              <p class="rate  feed-text px-2">
                 {% trans "Valoraciónes: " %}
-                <span class="count">{{ receta.num_valoraciones}} ⭐</span>
+                <span class="count"> {{ receta.num_valoraciones}} ⭐</span>
                 {% trans "Total: " %}
                 <span class="count">{{ receta.promedio_valoracion|floatformat:"1" }} ⭐</span>
               </p>

@@ -87,13 +87,13 @@ class ProfileDetailView(DetailView, FormView):
                   follower=self.request.user.profile,
                   following=following
               ).delete()
-            messages.add_message(self.request, messages.SUCCESS, _('Se ha dejado de seguir a {following.user.username}'))
+            messages.add_message(self.request, messages.SUCCESS, _(f'Se ha dejado de seguir a {following.user.username}'))
         else:
             Follow.objects.get_or_create(
               follower=self.request.user.profile,
               following=following
             )
-            messages.add_message(self.request, messages.SUCCESS, _('Se empieza a seguir a {following.user.username}'))
+            messages.add_message(self.request, messages.SUCCESS, _(f'Se empieza a seguir a {following.user.username}'))
         return super().form_valid(form)
 
     def get_success_url(self):
