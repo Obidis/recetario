@@ -14,8 +14,8 @@ from django.utils.translation import gettext_lazy as _
 from deep_translator import GoogleTranslator
 from django.shortcuts import redirect, get_object_or_404
 from django.db.models import Avg
-# Create your views here.
 
+# Creacion de recetas, solo los usuarios registrados pueden crear recetas
 @method_decorator(login_required, name="dispatch")
 class RecipeCreateView(CreateView):
     template_name = "recetas/recetas_create.html"
@@ -29,6 +29,7 @@ class RecipeCreateView(CreateView):
         messages.add_message(self.request, messages.SUCCESS, _('Receta creada correctamente.'))
         return super(RecipeCreateView, self).form_valid(form)
     
+
 #Vista para ver el detalle de las recetas
 @method_decorator(login_required, name="dispatch")
 class RecipeDetailView(DetailView):
@@ -94,7 +95,6 @@ class RecipeDetailView(DetailView):
         return context
 
 
-    
 #Vista para ver la lista de recetas
 @method_decorator(login_required, name="dispatch")
 class RecipeListView(ListView):
@@ -139,8 +139,6 @@ class RecipeDeleteView(DeleteView):
     def get_success_url(self):
         return reverse('home')
     
-
-
 
 
 #buscador de recetas

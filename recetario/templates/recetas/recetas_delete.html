@@ -3,6 +3,8 @@
 {% load i18n %}
 {% block head_title %}Recetas delete{% endblock %}
 {% block content %}
+
+<!-- Formulario para eliminar una receta -->
 <h1 class="display-6">{% trans "Eliminar receta" %}</h1>
 <div class="d-flex flex-column  gap-3">
   
@@ -11,7 +13,6 @@
     <img class="img-fluid img-responsive" src="{{ receta.image.url }}"width="300"/>
   </div>
   <div><button type="button" class="btn btn-danger">{% trans "Eliminar" %}</button></div>
-  
 </div>
 
 {% endblock %}

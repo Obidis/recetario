@@ -4,16 +4,15 @@
 {% block head_title %}Nueva Receta{% endblock %}
 {% block content %}
 
-
+<!-- Formulario para crear una nueva receta -->
   <div class="row">
-
-    
+      
     <div class="col-12 col-md-6 offset-md-3">
       <div class="card">
           <div class="card-body">
             <h1 class="card-title">{% trans "Nueva Receta" %}</h1>
             <hr>
-            
+           
             <form action="" method="post", enctype="multipart/form-data">
               {% csrf_token %} 
               
@@ -25,10 +24,8 @@
               <button class="btn btn-light">{% trans "Añadir Receta" %}</button>
             </form>
           </div>
-        
+      </div>  
     </div>
-
-    
   </div>
 
 {% endblock %}

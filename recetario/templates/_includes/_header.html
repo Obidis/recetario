@@ -3,7 +3,8 @@
 {% load i18n %}
 
 <header class=" mb-4 mt-4">
-        
+     
+     <!-- Navbar -->   
     <nav class=" navbar navbar-expand-lg">
         <img class=".img-fluid. " src="{% static '/imgs/martas_kitchen_logo.png' %}" alt="Logo" class="navbar-brand" width="150">
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -52,6 +53,8 @@
         </div>
         
     </nav>
+
+    <!-- Language selection form -->
     <div class="d-inline-flex p-2 bd-highlight">
         <form method="post" action="{% url 'set_language' %}">
             {% csrf_token %}
@@ -61,12 +64,12 @@
         </form>
     </div>
 
+    <!-- Search form -->
     <div class="d-inline-flex p-2 bd-highlight">
-        <form class="d-flex" role="search" action={% url "search" %} method="get">
+    
+        <form class="d-flex" role="search" action="{% url "search" %}" method="get">
             <input  name="search"  class="form-control me-2" type="search" placeholder="{% trans "Search" %}" aria-label="{% trans "Search" %}"/>
             <button class="btn btn-outline-success" type="submit">{% trans "Search" %}</button>
         </form>
-        
     </div>
-   
 </header>

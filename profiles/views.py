@@ -55,6 +55,7 @@ def contact_view(request):
         return render(request, "general/contact.html", context)
 
 
+#Vista para ver el perfil de usuario, solo los usuarios registrados pueden ver el perfil de otros usuarios
 @method_decorator(login_required, name="dispatch")
 class ProfileDetailView(DetailView, FormView):
 
@@ -108,6 +109,7 @@ class ProfileDetailView(DetailView, FormView):
         return context
 
 
+#Vista para ver la lista de usuarios, solo los usuarios registrados pueden ver la lista
 @method_decorator(login_required, name="dispatch")
 class ProfileListView(ListView):
     model = UserProfile
@@ -119,7 +121,6 @@ class ProfileListView(ListView):
         if self.request.user.is_authenticated:
             return UserProfile.objects.all().order_by('user__username').exclude(user=self.request.user)
         return UserProfile.objects.all().order_by('user__username')
-
 
 
 # Vista para editar el perfil de usuario, solo el propio usuario puede editar su perfil

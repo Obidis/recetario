@@ -5,22 +5,21 @@
 {% block content %}
 
 
-
+<!-- Formulario para actualizar una receta -->
   <h1>{% trans "Editar receta" %}</h1>
    
   <form action="" method="post" enctype="multipart/form-data">
+    
     {% csrf_token %} 
       <div class="col-12 col-md-6" >
         
-        {{ form.image | as_crispy_field }}
-        {{ form.recipe_name | as_crispy_field }}
-        {{ form.recipes | as_crispy_field }}
-        {{ form.ingredients | as_crispy_field }}
+      {{ form.image | as_crispy_field }}
+      {{ form.recipe_name | as_crispy_field }}
+      {{ form.recipes | as_crispy_field }}
+      {{ form.ingredients | as_crispy_field }}
        
       </div>
     <button class="btn btn-light">{% trans "Actualizar" %}</button>
   </form>
-    
-
-
+ 
 {% endblock %}

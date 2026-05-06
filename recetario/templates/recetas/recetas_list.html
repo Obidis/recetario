@@ -1,32 +1,21 @@
 {% extends 'general/layout.html' %}
-{% load crispy_forms_tags %}
 {% load i18n %}
 {% block head_title %}Recetario List{% endblock %}
 {% block content %}
 
+
+<!-- Listado completo de recetas -->
 <div class="container-fluid d-flex flex-column align-items-center mt-4">
+
   <h1 class="display-6">{% trans "Listado completo de recetas" %}</h1>
-   
+  <div class="d-flex flex-wrap">   
 
-    <div class="d-flex flex-wrap">   
-      {% for receta in recetas%}       
-        <div>
-          {% include  '_includes/_recetas.html' %}
-        </div>
-      {% endfor %}
-    </div>
-
+    {% for receta in recetas%}       
+      <div>
+       {% include  '_includes/_recetas.html' %}
+      </div>
+    {% endfor %}
+  </div>
 </div>
-
-
-
-
-
-
-
-
-    
-    
-
 
 {% endblock %}

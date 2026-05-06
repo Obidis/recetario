@@ -4,22 +4,24 @@
 {% block head_title %}Recetario{% endblock %}
 {% block content %}
 
+<!-- Detalles de la receta -->
 <div class="row">
   <h2 class="display-6">{% trans "Detalle de Receta" %}</h2>
+  
   <section class="comments p-2 px-3">
+    <!-- Información del creador, fecha de creación -->
     <div class="bg-white border mt-2">
       <div class="d-flex flex-row align-items-center feed-text px-2">
+        
         <img class="rounded-circle" src="{{ receta.user.profile.profile_picture.url }}" width="100"/>
         <p class="font-weight-bold">
           {% trans "Creada por" %} {{ receta.user.first_name }} {% trans "el" %} - {{ receta.created_at|date:"d-m-Y" }}
         </p>
       </div>
-
       <hr class="border-bottom border-2 border-dark" />
 
-      <div
-        class="d-flex flex-row justify-content-between align-items-center p-2"
-      >
+      <!-- Detalles de la receta: nombre, descripción -->
+      <div class="d-flex flex-row justify-content-between align-items-center p-2">
         <div class="p-2 px-3 d-flex flex-column align-items-center">
           <h3 class="font-weight-bold d-flex flex-row align-items-center feed-text px-2">{{ nombre_traducido }}</h3>
 
@@ -28,6 +30,8 @@
           </div>
 
           <div class="d-flex justify-content-space-around feed-text px-2">
+           
+            <!-- Imagen de la receta y valoración -->
             <div class="d-flex flex-column align-items-center feed-text px-5">
               <img class="img-fluid img-responsive" src="{{ receta.image.url }}" width="300"/>
               <p class="rate  feed-text px-2">
@@ -36,10 +40,10 @@
                 {% trans "Total: " %}
                 <span class="count">{{ receta.promedio_valoracion|floatformat:"1" }} ⭐</span>
               </p>
-              
             </div>
 
             <div>
+              <!-- Ingredientes de la receta -->
               <details>
                 <summary>{% trans "Ver ingredientes" %}</summary>
                 {% if ingredientes %}
@@ -56,10 +60,11 @@
           </div>
         </div>
       </div>
-      <div
-        class="d-flex align-items-center justify-content-center feed-text px-2"
-      >
+
+      <!-- Botones para agregar a favoritos, editar o eliminar la receta -->
+      <div class="d-flex align-items-center justify-content-center feed-text px-2">
         {% if user.is_authenticated %}
+          
           <form method="post" action="{% url 'profile_favorites' receta.pk %}">
             {% csrf_token %}
             <button class="btn btn-light º" type="submit">

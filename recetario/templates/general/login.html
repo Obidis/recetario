@@ -4,21 +4,22 @@
 {% block head_title %}Recetario-Login{% endblock %}
 {% block content %}
 
-
+<!-- Login form -->
 <div class="row">
   <div class="col-12 col-md-6 offset-md-3">
     <div class="card">
       <div class="card-body">
+        
         <h1 class="card-title">Login</h1>
         <hr>
+        
         <form action="" method="post">
         {% csrf_token %} 
           <div class="col-12 col-md-6" >
             {{ form.username | as_crispy_field }}
             {{ form.password | as_crispy_field }}
           </div>  
-            
-          <button class="btn btn-light">{% trans "Iniciar sesion" %}</button>
+        <button class="btn btn-light">{% trans "Iniciar sesion" %}</button>
         </form>
       </div>
     </div>  
