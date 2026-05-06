@@ -10,7 +10,6 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, LoginForm
-from profiles.models import UserProfile
 from django.views.generic import FormView
 from recetas.models import Receta
 from django.shortcuts import get_object_or_404
@@ -19,7 +18,7 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _ #para la traduccion
 from django.utils import translation
 from django.views import View
-from datetime import datetime
+
 
 
 
@@ -98,6 +97,7 @@ def toggle_favorite(request, pk):
     return render(request, 'profiles/profile_favorites.html', {
         'favorite_recetas': favorite_recetas,
     })
+
 
 #Cambio de idioma
 class SetLanguaView(View):
