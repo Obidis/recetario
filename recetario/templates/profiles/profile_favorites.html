@@ -3,12 +3,11 @@
 {% block head_title %}Favoritos{% endblock %} 
 {% block content %}
 
-
+<!-- Recetas favoritas del usuario -->
   <div class="row  md-3 justify-content-center" >
     <h2 class="text-center display-6 mb-4" >{% trans "Favoritas" %}</h2>
     <section class="card  " style="width: 28rem;  ">
       
-  
       {% if favorite_recetas %}
         <ul class="list-group list-group-flush">
           {% for recipe in favorite_recetas %}
@@ -20,8 +19,5 @@
       {% endif %}
     </section>
   </div>
-
-   
-   
 
 {% endblock %}
