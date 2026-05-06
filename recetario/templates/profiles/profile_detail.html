@@ -4,11 +4,13 @@
 {% block head_title %}Recetario{% endblock %}
 {% block content %}
 
+
+<!-- Perfil de usuario -->
 <div class="row">
 
     <section class="d-flex justify-content-center">
         <div id="card" class="card" style="width: 18rem;">
-            
+            <!-- Datos usuario -->
             {% if profile.profile_picture%}
             <img class="card-img-top" width="100" src="{{ profile.profile_picture.url }}" alt="foto"/>
             {% else %}
@@ -18,12 +20,15 @@
             <div class="card-body">
                 <h5 class="card-title">{{ profile.user.username}}</h5>
             </div>
+            
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><span class="fw-bold">{% trans "Email: " %}</span>{{ profile.email|default_if_none:'Sin rellenar' }}</li>
                 <li class="list-group-item"><span class="fw-bold">{% trans "F.nacimiento: " %}</span>{{ profile.birth_date|date:"d-m-Y"|default_if_none:"Sin rellenar"}}</li>
-                
             </ul>
+            
+            <!-- Seguidores y seguidos -->
             <div class="d-inline-flex p-2 bd-highlight gap-5  justify-content-center">
+                
                 <div class="d-flex flex-column align-items-center">
                     <span class="fw-bold">{% trans "Seguidos: " %}</span>
                     <span class="count">{{ profile.followers.count }}</span>
@@ -34,27 +39,32 @@
                 </div>
            </div>
             <div class="card-body d-flex justify-content-center">
-                {% if profile.user != request.user %}
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.profile_pk|as_crispy_field}}
-                        {% if following %}
-                            <button class="btn btn-light">{% trans "Siguiendo" %}</button>
-                        {% else %}
-                            <button class="btn btn-light">{% trans "Seguir" %}</button>
-                        {% endif %}
-                </form>
-                {% endif %}
                 
+                {% if profile.user != request.user %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.profile_pk|as_crispy_field}}
+                            {% if following %}
+                                <button class="btn btn-light">{% trans "Siguiendo" %}</button>
+                            {% else %}
+                                <button class="btn btn-light">{% trans "Seguir" %}</button>
+                            {% endif %}
+                    </form>
+                {% endif %}
             </div>
+            
+            <!-- Editar perfil -->
+             <div class="card-body d-flex justify-content-center">
             {% if profile.user == request.user %}
-            <a class="btn btn-light" href="{% url 'profile_update' profile.pk %}">{% trans "Editar" %}</a>
+                <a class="btn btn-light" href="{% url 'profile_update' profile.pk %}">{% trans "Editar" %}</a>
             {% endif %}
         </div>
                 
         
   
     </section>
+    
+    <!-- Recetas del usuario -->
     <section class="d-flex flex-column align-items-center mt-4">
         <h2 class="display-6">{% trans "Mis Recetas" %}</h2>
         <div class="container">
@@ -72,6 +82,5 @@
             {% endif %}
         </div>
     </section>
-
 </div>  
 {% endblock %}
