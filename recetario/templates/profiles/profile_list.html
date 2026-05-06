@@ -5,7 +5,7 @@
 {% block content %}
 
 
-
+<!-- Lista de perfiles -->
   <div class="container d-flex flex-column align-items-center mt-4">
     <h1 class="display-6">{% trans "Perfiles" %}</h1>
           
@@ -20,15 +20,14 @@
           {% else %}
                No dispone de foto de perfil        
           {% endif %}
-        
-      
+              
         <div class="card-body">
           <h5 class="card-title">{% trans "Perfil de: " %}{{ profile.user.username}}</h5>
         </div>
 
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><span class="fw-bold">{% trans "Email: " %}</span>{{ profile.email|default_if_none:'Sin rellenar' }}</li>
-          <li class="list-group-item"><span class="fw-bold">{% trans "F.nacimiento: " %}</span>{{ profile.birth_date|date:"d-m-Y"|default_if_none:"Sin rellenar"}}
+          <li class="list-group-item"><span class="fw-bold">{% trans "F.nacimiento: " %}</span>{{ profile.birth_date|date:"d-m-Y"|default_if_none:"Sin rellenar"}}</li>
         </ul>
 
         <div class="d-inline-flex p-2 bd-highlight gap-5  justify-content-center">
@@ -43,12 +42,9 @@
               <span class="count">{{ profile.following.count }}</span>
             </div>
         </div>
-
-        
       </div>
       {% endfor %}
     </section>
   </div>
-
 
 {% endblock %}
