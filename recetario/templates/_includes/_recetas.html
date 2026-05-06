@@ -1,6 +1,6 @@
 {% load i18n %}
 
-
+<!-- Template for displaying a single recipe card -->
 <div  class="container mt-5 ">
     <div id="card" class="card " style="width: 18rem;">
         
@@ -12,15 +12,12 @@
                         <span class="font-weight-bold">{{ receta.user.first_name }}</span><span class="text-black-50 time">{{ receta.created_at|date:"d-m-Y" }}</span>
                     </div>
                 </div>
-                <div class="feed-icon px-2">
-                   <i class="fa fa-ellipsis-v text-black-50"></i>
-                </div>
             </div>
             
             <div class="fixed-image-wrapper" >
+            
                 <h6>{{ receta.recipe_name }}</h6>
                 <img class="card-img-top"  src="{{ receta.image.url }}" ><a href="{% url 'receta_detail' receta.pk %}" class="stretched-link"></a></img>
-                
             </div>
         </article>
     </div>
