@@ -15,9 +15,8 @@
             </div>
             
             <div class="fixed-image-wrapper" >
-            
                 <h6>{{ receta.recipe_name }}</h6>
-                <img class="card-img-top"  src="{{ receta.image.url }}" ><a href="{% url 'receta_detail' receta.pk %}" class="stretched-link"></a></img>
+                <img class="card-img-top" width="100" src="{{ receta.image.url }}" ><a href="{% url 'receta_detail' receta.pk %}" class="stretched-link"></a></img>
             </div>
         </article>
     </div>
