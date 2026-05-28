@@ -1,0 +1,18 @@
+/* Ensure recipe images have consistent size */
+.card-img-top {
+    width: 100%;
+    height: 250px; /* adjust as needed */
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+/* Fixed image wrapper to maintain size */
+.fixed-image-wrapper {
+    height: 250px;
+    overflow: hidden;
+}
+
+/* Optional: limit container width for consistency */
+#card {
+    max-width: 18rem;
+}

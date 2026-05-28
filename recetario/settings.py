@@ -26,7 +26,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Translation
-    'modeltranslation',
+   
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'crispy_bootstrap5',
-    'rosetta',
+
     
-    'django_sass',
+
 
      'recetas',
      'profiles',
@@ -146,6 +146,10 @@ LANGUAGE_COOKIES_NAME = 'django_language' #para la traduccion
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "profiles" / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
